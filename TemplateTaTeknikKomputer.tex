@@ -1,0 +1,80 @@
+\title{Buku Tugas Akhir ITS}
+\author{Musk, Elon Reeve}
+% Pengaturan ukuran teks dan bentuk halaman dua sisi
+\documentclass[12pt,twoside]{report}
+\input{Init/Init.tex}
+%========================================
+%Template ini di modifikasi oleh departement Teknik Komputer ITS
+%dari template yang telah dibuat Musk, Elon Reeve
+%=======================================
+
+%=======================================
+%Direktori Penting 
+%1. Init : Berisi File penting terkait dengan konfigurasi .
+%            Isi dari direktori ini jangan diubah
+%2.KataPengantar 
+%3. Abstrak : berisi abstrak untuk bahasa indonesia dan bahasa inggris 
+%4. Bab1-Bab5 : Isi tiap-tiap bab
+%5. Pustaka : Berisi daftar pustaka 
+%6. Biografi penulis 
+%=======================================
+
+%========================================
+% Identutas Mahasiswa} 
+%========================================
+\NamaMahasiswa{Syahrul Fathoni Ahmad}{5024 21 1007}
+
+%========================================
+%Identitas Tugas Akhir
+%========================================
+\KodeMataKuliah{EC234801}
+\JudulTAInd{SISTEM ESTIMASI KECEPATAN KENDARAAN LALU
+LINTAS MENGGUNAKAN DRONE DENGAN METODE \emph{YOLOv8} BERBASIS \emph{JETSON NANO}}
+\JudulTAEng{VEHICLE SPEED ESTIMATION SYSTEM USING DRONE
+WITH JETSON NANO-BASED YOLOv8 METHOD}
+\Tempat{Surabaya}
+
+%========================================
+% Daftar Pembimbing 
+%========================================
+\PembimbingSatu{Dr. Arief Kurniawan, S.T., M.T.}{19740907 200212 1 001} 
+\PembimbingDua{Dr. Diah Puspito Wulandari, S.T., M.Sc.}{19801219200501 2 001} 
+
+%========================================
+% Daftar Penguji
+%========================================
+\PengujiSatu{Dr. Eko Mulyanto Yuniarno,S.T.,M.T.}{19680601199512 1 009} 
+\PengujiDua{Arta Kusuma Hernanda, S.T., M.T.}{1996202311024}
+\PengujiTiga{Yusril Izza, S.T., M.Sc.}
+{} 
+
+
+%========================================
+%Identitas Departement dan fakultas
+%========================================
+\KepalaDepartemen{Dr. Arief Kurniawan, S.T., M.T.}{19740907200212 1 001} 
+\Departemen{Teknik Komputer}{Computer Engineering}
+\Fakultas{Teknologi Elektro dan Informatika Cerdas}{Intelligent Electrical And Informatics Technology}
+\SingkatanFakultas{FTEIC}{FIEI}
+
+
+% Isi keseluruhan dokumen
+\begin{document}
+\input{Init/TataLetak.tex} 
+
+% Bab 1 pendahuluan
+\input{bab1/bab1.tex}
+\cleardoublepage
+\input{bab2/bab2.tex}
+\cleardoublepage
+\input{bab3/bab3.tex}
+\cleardoublepage
+\input{bab4/bab4.tex}
+\cleardoublepage
+\input{bab5/bab5.tex}
+\cleardoublepage
+\input{Init/DaftarPustaka.tex}
+\cleardoublepage
+\input{BiografiPenulis/biografi-penulis.tex}
+\cleardoublepage
+\end{document}
