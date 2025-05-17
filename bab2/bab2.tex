@@ -1,225 +1,132 @@
-\chapter{KAJIAN PUSTAKA}
 
+\begin{spacing}{1.2}
+	\chapter{TINJAUAN PUSTAKA}
+\end{spacing}
+  
+\vspace{4ex}
 
-\section*{ }
-Demi mendukung tutorial ini, dibutuhkan beberapa teori penunjang sebagai bahan acuan dan referensi. Dengan demikian tutorial ini menjadi lebih terarah. 
-\vspace{1ex}
+\section{Hasil Penelitian Terdahulu}
+Pengerjaan penelitian ini juga dipengaruhi adanya beberapa hasil penelitian terdahulu yang terkait, sebagai berikut:
 
-\section{Cara Menulis Daftar}
-\underline{Menulis Dartar Item}
-\begin{itemize}
-	\item Ini Urutan Pertama. Ini Urutan Pertama. Ini Urutan Pertama. Ini Urutan Pertama. Ini Urutan Pertama. Ini Urutan Pertama. Ini Urutan Pertama. 
-	\item Menulis Item kedua.Menulis Item kedua.Menulis Item kedua.Menulis Item kedua.Menulis Item kedua.Menulis Item kedua.Menulis Item kedua.
-	\item Ini Urutan Ketiga
-\end{itemize}
+\subsection{Perhitungan Kecepatan Kendaraan Menggunakan Drone Bergerak dengan Metode Deep Learning}
+\label{subsec:Iqbal2024}
+Penelitian ini dikembangkan oleh Iqbal Fatchurozi, untuk penyelesaian Tugas Akhir. Penulis melakukan penelitian terkait penggunaan \emph{drone} dalam pengawasan lalu lintas. Implementasi pengolahan citra video untuk melakukan perhitungan kecepatan kendaraan dari atas menggunakan \emph{drone} yang dilakukan dengan komputer untuk komputasinya. Metode deteksi objek yang digunakan adalah YOLOv8 dengan menggunakan streamlit untuk mengirimkan video ke komputer server sebagai tempat pemrosesan data \cite{Iqbal2024}. 
 
-\underline{Menulis daftar urutan}
-\begin{enumerate}
-	\item Ini Urutan Pertama
-	\item Ini Urutan kedua
-	\begin{enumerate}
-		\item Sub Urutan Pertama
-		\item Sub Urutan Kedua
-	\end{enumerate} 
-	\item Ini Urutan Ketiga
-\end{enumerate}
+\subsection{Vehicle Tracking and Speed Estimation from Unmanned Aerial Vehicles Using Segmentation-Initialised Trackers}
+\label{subsec:Tilon2023}
+Pendekatan umum dalam estimasi kecepatan kendaraan berbasis \emph{Unmanned Aerial Vehicle} (UAV) menggunakan deteksi objek seperti \emph{YOLOv4} yang dikombinasikan dengan pelacak seperti \emph{DeepSORT}. Meskipun akurat, metode ini kurang efisien untuk \emph{edge device} karena beban komputasi yang tinggi. Sebagai alternatif, digunakan pelacak \emph{MOSSE} yang ringan, sementara peneliti yang lain menunjukkan pentingnya jarak UAV terhadap objek dalam sistem pelacakan.
 
+Menanggapi keterbatasan tersebut, Tilon dan Nex (2023) mengembangkan metode pelacakan berbasis segmentasi menggunakan model \emph{CABiNet}. Dengan inisialisasi pelacakan dari hasil segmentasi, metode ini mampu berjalan pada \emph{edge device} seperti \emph{Jetson Xavier NX} dan menghasilkan \emph{MOTP} sebesar 0{,}872, lebih tinggi dibandingkan metode berbasis deteksi objek. Pendekatan ini menawarkan efisiensi serta fleksibilitas dalam menghasilkan informasi semantik untuk pemantauan infrastruktur \cite{Tilon2023}.
 
-\section{Cara Penulisan Persamaan}
-Cara menulis persamaan  inline pada text $\sum_{i=1}^{N} x_iy_i$
+\subsection{Automatic Vehicle Speed Estimation Method for Unmanned Aerial Vehicle Images}
+Penelitian yang telah dilakukan oleh Hao Long, Yi-Nung, dan rekan menghasilkan metode otomatis untuk mendeteksi dan menghasilkan estimasi kecepatan kendaraan melalui citra udara dari UAV. Metode yang digunakan meliputi trannsformasi warna dengan HSV, meminimalisir bayangan, dan memisahkan objek deteksi dari latar menggunakan perbedaan temporal. Proses estimasi kecepatan yang digunakan adalah menghitung jarak perpindahan objeknya dalam satuan piksel, yang didukung dengan lebar jalan sebagai skala konversi jarak \cite{auto-vehicle-speed-uav-img}.
 
+\subsection{A novel vehicle tracking and speed estimation with varying UAV altitude and video resolution}
+Jurnal ini membahas perihal metode deteksi kendaraan dan estimasi kecepatan menggunakan video udara dari atas dengan variasi ketinggian yang dihasilkan dari \emph{Unmanned Aerial Vehicle} beserta resolusi video yang dilakukan oleh Yuqing Chen, Dongyang Zhao, dan rekan. Metode deteksi yang digunakan adalah YOLOv3, kemudian untuk estimasi kecepatannya menggunakan pemetaan piksel ke jarak nyata secara eksponensial. Pendekatan yang dilakukan untuk estimasi kecepatan kecepatannya ialah memanfaatkan hubungan eksponensial yang dihasilkan dari \emph{fitting} data antara jarak piksel dengan jarak aktual yang didukung \emph{least square} sehingga tidak diperlukan kalibrasi kamera yangg kompleks \cite{novel-vehicle-tracking}.
 
-Contoh Integral
-\begin{equation}\label{eq:persamaan1}
-y=\int_{0}^{2\pi} cos(x) dx
-\end{equation}
-Persamaan \ref{eq:persamaan1} adalah contoh menulis fungsi $cos(\alpha x)$ dari $0\le x\le 2\pi$.\\
-Menjajarkan persamaan
-\begin{align}
-y&=\int_{0}^{2\pi}cos(x)dx\\
-&=sin(x)|_0^{2\pi}\\
-&=sin(2\pi)-sin(0)\\
-&=0
-\end{align}
-Persamaan \ref{eq:matrix} adalah matrix.
-\begin{equation}\label{eq:matrix}
-\textbf{X}=\begin{bmatrix}
-x_{11}&x_{12}&\cdots&x_{1m}\\
-x_{21}&x_{22}&\cdots&x_{2m}\\
-\vdots&\vdots&\ddots&\vdots\\
-x_{n1}&x_{n2}&\cdots&x_{nm}
-\end{bmatrix}
-\end{equation}
-\vspace{1ex}
-\section{Cara Penulisan Tabel}
-\begin{table}[H]
-	\caption{Tabel Contoh}
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		No & X & Y & C \\ \hline
-		1 & 0 & 0 & 1 \\ \hline
-		2 & 0 & 1 & 0 \\ \hline
-		3 & 1 & 0 & 0 \\ \hline
-		4 & 1 & 1 & 0 \\ \hline
-	\end{tabular}
-\end{table}
+\subsection{Real-Time Traffic Flow Parameter Estimation From UAV Video Based on Ensemble Classifier and Optical Flow}
+Jurnal yang ditulis oleh Zhibin Li, Jinjun Tang, dan rekan berisi tentang pembahasan untuk menghitung perkiraan aliran lalu lintas seperti kecepatan, kepadatan, dan volume menggunakan video dari \emph{UAV}. Klasifikasi \emph{Haar cascade} digunakan untuk menghitung ROI \emph{Region of Interest}, kemudian CNN sebagai klasifikasi akhir dalam deteksi kendaraan. Estimasi \emph{motion} dilakukan dengan \emph{optical flow} untuk mengukur perpindahan kendaraan dan latar belakang secara terpisah. Lalu, untuk memperkirakan parameter aliran lalu lintas digunakan informasi dari deteksi dan estimasi \emph{motion} untuk menghitung parameternya seperti kecepatan, kepadata, dan volume \cite{realtime-trafficflow-estimation}.
 
+\subsection{AI-Powered Automated Road Damage Detection Using UAV Images and Deep Learning}
+Penelitian ini mengembangkan sistem deteksi kerusakan jalan otomatis dengan memanfaatkan \emph{Unmanned Aerial Vehicle} (UAV) dan model deep learning berbasis CNN, khususnya varian YOLO (v5, v7, v8). Citra udara resolusi tinggi yang diambil dari berbagai sudut dan ketinggian diproses lebih dulu, meliputi pengurangan noise, dan peningkatan kontras sebelum dianalisis oleh model yang dievaluasi menggunakan metrik mAP, presisi, dan recall untuk memastikan keakuratannya. Hasil pengujian menunjukkan YOLOv8 unggul dalam akurasi dan kecepatan inferensi secara \emph{real time}, dan hasil deteksi langsung diintegrasikan ke dalam sistem GIS untuk mempermudah pemetaan serta penentuan prioritas perbaikan. Dengan demikian, pendekatan ini mempercepat inspeksi, meminimalkan kesalahan manusia, dan memungkinkan pemantauan skala besar secara berkelanjutan, sehingga perbaikan dapat dilakukan tepat waktu dan umur infrastruktur jalan pun terjaga. Untuk kedepannya, cakupan penelitian akan diperluas dengan menambah dataset, menerapkan transfer learning, serta menggunakan metode \emph{ensemble} untuk meningkatkan daya tahan dan akurasi model \cite{bujji-ai}.
 
-\begin{table}[H]
-	\label{tab:tabelcontoh2}
-	\caption{Tabel ini contoh 2}
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		\multirow{2}{*}{\textbf{No}} & \multicolumn{3}{l|}{\textbf{Data}} \\ \cline{2-4} 
-		& \textbf{x} & \textbf{y} & \textbf{z} \\ \hline
-		\textbf{1} & \textbf{0.1} & \textbf{0.2} & \textbf{0.3} \\ \hline
-		\textbf{2} & \textbf{0.4} & \textbf{0.5} & \textbf{0.6} \\ \hline
-	\end{tabular}
-\end{table}
-Pada Tabel \ref{tab:tabelcontoh2} di tunjukan cara membuat tabel.
+\subsection{Efficient Roundabout Supervision: Real-Time Vehicle Detection and Tracking on Nvidia Jetson Nano}
+Penelitian ini dikembangkan dengan menggunakan \emph{edge device} yaitu Jetson Nano, dimana pendekatan deteksi kendaraan yang digunakan adalah \emph{YOLOv7-tiny} serta \emph{Deep SORT} untuk pelacakan. Imane Elmanaa yang merupakan penulis dari jurnal ini membahas perihal pendeteksian, pelacakan, perhitungan berbagai jenis kendaraan secara \emph{real-time} pada persimpangan di negara Maroko guna mendukung perencanaan infrastruktur \cite{efficient-roundabout-supervision}.
 
+\subsection{Perancangan Sistem Pengukur Kecepatan Kendaraan Berbasis Kamera Menggunakan Algoritma YOLO}
+Penelitian yang dilakukan oleh Zikri Giarida dan Perani Rosyani membahas perancangan sistem untuk mengukur kecepatan kendaraan berbasis kamera menggunakan YOLO. YOLO disini digunakan untuk mendeteksi kendaraan yang lewat. Proses kalibrasi dilakukan dengan menentukan koordinat dari video yang disesuaikan dengan jarak aktual di dunia nyata dengan garis pengukuran. Kemudian, kecepatan kendaraan dihitung berdasarkan waktu yang dibutuhkan untuk melewati area pengukuran dengan menggunakan rumus jarak \emph{euclidean} yang dikonversikan ke kilometer per jam \cite{perancangan-sistem-pengukur-kecepatan}.
 
-\begin{sidewaystable}
-	\centering
-	\caption{Tabel ke samping}
-	\begin{tabular}{|l|l|l|l|}
-		\hline
-		\multirow{2}{*}{\textbf{No}} & \multicolumn{3}{l|}{\textbf{Data}} \\ \cline{2-4} 
-		& \textbf{x} & \textbf{y} & \textbf{z} \\ \hline
-		\textbf{1} & \textbf{0.1} & \textbf{0.2} & \textbf{0.3} \\ \hline
-		\textbf{2} & \textbf{0.4} & \textbf{0.5} & \textbf{0.6} \\ \hline
-	\end{tabular}
-	
-\end{sidewaystable}
-\newpage
-\section{Cara Meletakan Gambar}
+\section{Landasan Teori}
+Konsep dasar atau teori yang digunakan dalam penelitian ini tercantum pada sub-bab dibawah ini:
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{bab2/LambangTeknikKOmputer}
-	\caption{Lambang Teknik Komputer  }
-	\label{fig:lambangteknikkomputer}
+\subsection{DJI Phantom 4 Pro}
+DJI Phantom 4 Pro merupakan salah satu model \emph{drone} keluaran DJI, yang merupakan perusahaan besar dimana berfokus pada pengembangan alat teknologi, salah satunya yang terkenal adalah produk \emph{drone}nya. Phantom 4 Pro memiliki kelebihan dibanding versi sebelumnya dimana dia sudah mampu menghindari tabrakan karena adanya \emph{rear-facing obstacle sensing system} di bagian belakang, serta sensor inframerah di bagian kiri dan kanan. \emph{Drone} ini memiliki resistansi terhadap angin dengan maksimum sebesar 10m/s, dan dapat diterbangkan selama kurang lebih 30 menit \cite{djiphantom4pro}.
+
+Kamera gimbal yang digunakan pada \emph{drone} ini memiliki piksel sebesar 20MP. Maksimum kualitas yang dapat diatur pada kamera ini sebesar 4K 60p (H.264) dan 4K 30p (H.265) dengan maksimal \emph{bitrate} sebesar 100Mbps. Hasil rekaman maupun tangkapan layar dari kamera DJI Phantom 4 Pro dapat disimpan dengan \emph{Micro SD Card} yang dihubungkan ke \emph{drone}. Terdapat juga \emph{controller} yang dapat dihubungkan dengan USB atau HDMI melalui perangkat keras seperti, \emph{smartphone} \cite{djiphantom4pro}. 
+
+\subsection{Nvidia Jetson Nano Developer Kit}
+Nvidia Jetson Nano merupakan perangkat keras yang digunakan untuk komputasi berukuran kecil bertujuan untuk aplikasi kecerdasan buatan dan \emph{machine learning}. Jetson Nano didukung dengan GPU Maxwell 128-core, CPU quad-core ARM A57, dan Memori 4GB LPDDR4 sehingga sudah mampu melakukan pemrosesan data secara efisien. Perangkat keras ini diperuntukkan untuk aplikasi di lapangan sehingga Jetson Nano ini terbilang perangkar \emph{portable} dapat dibawa kemana saja. Komputasi dapat langsung diproses di perangkat tanpa koneksi internet terlebih dahulu sehingga memungkinkan \emph{real-time} tanpa khawatir latensi yang muncul.
+
+Banyak penelitian yang sudah dilakukan dengan Jetson Nano, dimana perangkat ini menawarkan kemampuan dalam menjalankan komputasi \emph{machine learning} dengan cepat dan akurat. Jetson Nano juga mampu melakukan komputasi pendeteksian objek dengan menggunakan model terlatih melalui \emph{framework} seperti YOLO dan Darknet. Dalam beberapa penelitian, dilakukan percobaan untuk mengetahui kinerja Jetson Nano, seperti penggunaan daya dalam menjalankan komputasi. Hasilnya menunjukkan bahwa GPU Jetson Nano bekerja hampir maksimal, dan konsumsi RAM sebanyak 2.1 GB dari setengah kapasitas memori \cite{jetson-nano}.
+
+\subsection{\emph{Real-Time Messaging Protocol}(RTMP)}
+RTMP adalah jaringan protokol yang mampu untuk mengirimkan \emph{streaming} media seperti \emph{audio}, \emph{video}, dan data dari server ke klien. Protokol ini sering digunakan untuk mengirim video dengan latensi rendah dan siaran langsung ke server media. RTMP menggunakan protokol TCP, serta menyediakan layanan multiplex pesan dua arah melalui satu saluran TCP tetap, mencakup pengiriman data dan perintah kontrol secara bersamaan. Proses koneksi RTMP diawali dengan tahapan \emph{handshake} guna memastikan kestabilan antara server dan penonton. Umumnya, keterlambatan RTMP berada pada kisaran 5 hingga 30 detik, namun ini bisa ditekan dengan penggunaan encoding H264, yang mencatatkan latensi hanya sekitar 137,48 hingga 146,02 milidetik\cite{rtmp}.
+
+Namun, \emph{streaming} ini perlu dikonfigurasi dengan baik apabila dirasa kurang sesuai dengan kebutuhan. RTMP juga terbukti pada jurnal penelitian terkait \emph{UAV-based data streaming}, dimana terbukti bahwa dalam pengiriman pesan data dengan protokol tersebut dapat diandalkan dan cepat ke \emph{device} yang lain\cite{rtmp}.
+
+\subsection{\emph{Deep Learning}}
+\emph{Deep learning} dibangun di atas konsep \emph{artificial neural network} dengan menyusun banyak lapisan neuron yang saling terhubung untuk mempelajari representasi fitur secara hirarki. Setiap lapisan melakukan transformasi afine yang diikuti fungsi aktivasi nonlinier seperti \emph{ReLU} dan \emph{sigmoid} sehingga model mampu mengekspresikan fungsi-fungsi kompleks. Pelatihan jaringan ini memanfaatkan algoritma \emph{backpropagation} untuk menghitung gradien secara efisien, yang kemudian dioptimalkan dengan metode \emph{gradient descent} mulai dari \emph{batch} dan \emph{mini-batch} hingga varian canggih seperti \emph{momentum} dan \emph{Adam}. Untuk menjaga kestabilan dan mempercepat proses konvergensi, diaplikasikan juga teknik seperti inisialisasi bobot yang tepat, \emph{batch normalization}, \emph{dropout}, serta penjadwalan laju pembelajaran.
+
+Selain jaringan \emph{feedforward}, berbagai arsitektur khusus dikembangkan sesuai karakteristik data. \emph{Convolutional Neural Network} (\emph{CNN}) memanfaatkan lapisan konvolusi dan pooling untuk mengekstrak pola spasial dalam citra, membangun peta fitur bertingkat sebelum tahap klasifikasi atau regresi. Sementara itu, \emph{Recurrent Neural Network} (RNN) dan varian berpintu seperti LSTM dan GRU dirancang untuk memproses data sekuensial seperti teks atau sinyal waktu dengan menyimpan jejak konteks antar langkah waktu melalui status tersembunyi. Di sisi tak terawasi, \emph{autoencoder} mengompresi input ke \emph{embedding} berdimensi rendah dan merekonstruksi kembali keluaran, berguna untuk deteksi anomali dan reduksi dimensi. Melalui TensorFlow 2 dan Keras, praktisi dapat mengombinasikan lapisan-lapisan ini untuk merancang model deep learning yang sesuai beragam aplikasi \cite{Geron2019}.
+
+\subsection{YOLO}
+\emph{You Only Look Once} atau disingkat YOLO merupakan algoritma deteksi objek yang dikenalkan oleh Joseph Redmon, Santosh Divvala, Ross Girshick, dan Ali Farhadi pada tahun 2015. Masalah deteksi objek sebagai regresi dibandingkan tugas klasifikasi dengan memisahkan \emph{bounding box} dan memperhitungkan ke setiap gambar yang terdeteksi \cite{yoloweb}. Dengan pendekatan tersebut, YOLO mampu memproses citra dengan waktu singkat sehingga ideal untuk aplikasi yang membutuhkan komputasi cepat seperti pengawasan dan pemantauan secara \emph{real-time} kondisi lalu lintas.
+
+\begin{figure} [H] \centering
+  \includegraphics[scale=0.7]{bab2/yolo.jpeg}
+  \caption{\emph{Layer} pada YOLO}
+  \label{fig:layeryolo}
 \end{figure}
-\section{Cara Membuat  sitasi}
 
-Ini adalah cara  sitasi ke buku menggunakan cite\{Refferensi\}\\
+Pada Gambar \ref{fig:layeryolo} terlihat bahwa arsitektur CNN untuk pemrosesan citra. Proses dimulai dengan \emph{input layer} sebagai inputan gambar. Kemudian, \emph{convolution layer 1}, untuk ekstraksi fitur pada citra. Setelah itu, melewati \emph{max pooling layer 1} untuk mengurangi dimensi data dalam meningkatkan efisiensi program komputasi saat melakukan pemrosesan data sehingga mencegah \emph{overfitting}. Akan seterusnya mengulang \emph{layer} tersebut hingga pada tahap akhir, hasilnya berhasil menuju \emph{fullly-connected layer} yang mengkoneksikan semua neuron dengan tujuan menghasilkan keluaran di \emph{output layer} \cite{layercnn}.
 
-Contoh : sitasi ke 1
- \cite{Brathwaite2009}.\\
-Daftar referensi terletak pada file 
-\textit{lainnya/pustaka.bib}\\
+\subsection{YOLOv8}
+YOLOv8 merupakan versi terkini dari \emph{framework} YOLO, yang dikembangkan untuk mendeteksi objek pada sebuah data seperti gambar dan video secara \emph{real-time} dengan kecepatan tinggi. YOLOv8 dirancang untuk menyelaraskan akurasi deteksi dan kecepatan pemrosesan sehingga cocok untuk berbagai implementasi aplikasi seperti pengawasan dan pemantauan keamanan, lalu lintas, dan pemantauan lainnya yang membutuhkan deteksi objek secara cepat dan akurat.
 
-contoh  sitasi ke 2
-\cite{Friedman1997}
-\newline
-\section{Algoritma}
-Contoh Algoritma
+YOLOv8 menggabungkan beberapa pendekatan yang lebih baik, antara lain \emph{Feature Pyramid Network} (FPN) untuk mengatur objek yang bervariasi, kemudian ada \emph{Path Aggregation Network} (PAN) yang membuat kualitas deteksi pada beberapa level fitur meningkat. YOLOv8 sudah mampu mengurangi redudansi dari komputasi melalui pemisahan fitur dengan \emph{backbone} CSPDarknet sehingga hasil dari pemrosesan dapat lebih efisien. Selain itu, pendekatan \emph{anchor-free} dalam \emph{Adaptive Anchor-free Head} digunakan oleh YOLOv8 guna menghilangkan \emph{anchor-box} dan meningkatkan fleksibilitas. Maka dari itu, YOLOv8 memberikan performa deteksi objek yang lebih baik secara keseluruhan \cite{yolov8}.
 
-\begin{algorithm}[H]
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\underline{function Euclid} $(a,b)$\;
-	\Input{Two nonnegative integers $a$ and $b$}
-	\Output{$\gcd(a,b)$}
-	\eIf{$b=0$}
-	{
-		return $a$\;
-	}
-	{
-		return Euclid$(b,a\mod b)$\;
-	}
-	\caption{Euclid's algorithm for finding the greatest common divisor of two nonnegative integers}
-\end{algorithm}
-\newpage
-\section{Tools Online Yang Cukup Membantu}
-Beberapa tools yang dapat digunakan untuk menulis tesis dengan latex.
-\subsection{Online equation editor: HostMath }
-\begin{center}
-	\includegraphics[width=1\linewidth]{bab2/Hosmath}
-	\captionof{figure}{http://hostmath.com/}
-	\label{fig:hosmath}
-\end{center}
+\subsection{TensorRT}
+Implementasi TensorRT pada model YOLOv8 bertujuan untuk mengoptimalkan proses inferensi dengan mengaplikasikan berbagai teknik percepatan seperti kuantisasi, \emph{layer fusion}, dan optimasi kernel yang dirancang khusus untuk perangkat keras NVIDIA GPU. TensorRT memproses model deep learning agar dapat dijalankan dengan latensi yang rendah dan throughput tinggi tanpa mengurangi akurasi, sehingga sangat sesuai untuk aplikasi \emph{real-time}. Dalam penelitian ini, TensorRT digunakan untuk meningkatkan kecepatan inferensi pada model YOLOv8 yang telah dimodifikasi pada arsitektur \emph{Feature Pyramid Network} (FPN), sehingga dapat memenuhi kebutuhan inferensi dengan latensi yang sangat singkat.
+
+Hasil eksperimen menunjukkan bahwa implementasi TensorRT meningkatkan kecepatan inferensi secara signifikan, dengan penurunan waktu inferensi hingga 7,1 ms dibandingkan model tanpa optimasi. Peningkatan ini disertai dengan sedikit kenaikan nilai \emph{mean Average Precision} (mAP50-95), menandakan bahwa optimasi ini tetap menjaga akurasi deteksi objek. Modifikasi arsitektur YOLOv8 pada FPN yang hanya menggunakan detection head pada skala objek tertentu, dipadukan dengan TensorRT memberikan performa terbaik dalam hal kecepatan dan presisi. Pendekatan ini mempercepat inferensi hingga mencapai sekitar 12 ms, sangat ideal untuk implementasi dalam sistem deteksi berbasis visi komputer dengan kebutuhan respons waktu nyata \cite{tensorrt}.
 
 
+\subsection{\emph{Observation-Centric} SORT (OC-SORT)}
+Kalman Filter adalah salah satu metode utama yang sering digunakan dalam sistem pelacakan multi-objek, termasuk dalam algoritma \emph{SORT} (\emph{Simple Online and Realtime Tracking}). Metode ini berasumsi bahwa pergerakan objek mengikuti model gerak linear dengan kecepatan tetap pada rentang waktu yang singkat. Dalam pengaplikasiannya untuk pelacakan kendaraan menggunakan drone DJI Phantom 4 Pro dan metode YOLOv8 yang dijalankan pada Jetson Nano, Kalman Filter dipakai untuk memprediksi posisi kendaraan berdasarkan kotak pembatas (\emph{bounding box}) hasil deteksi objek. Namun, metode ini memiliki keterbatasan saat objek terhalang (\emph{occlusion}) atau bergerak dengan pola non-linear, sehingga akumulasi kesalahan prediksi dapat terjadi seiring berjalannya waktu.
 
+OC-SORT (\emph{Observation-Centric SORT}) merupakan pengembangan dari \emph{SORT} yang mengatasi kelemahan tersebut dengan pendekatan yang berfokus pada observasi nyata, bukan hanya prediksi hasil estimasi. Metode ini mengadopsi strategi \emph{Observation-Centric Re-Update} (\emph{ORU}), di mana kesalahan yang menumpuk pada Kalman Filter selama periode \emph{occlusion} diperbaiki dengan menggunakan data observasi virtual yang dibentuk melalui interpolasi dari pengamatan terakhir sebelum \emph{occlusion} dan pengamatan saat objek kembali terlihat. Dengan pendekatan ini, \emph{OC-SORT} mampu meningkatkan akurasi pelacakan objek terutama saat kendaraan yang sempat terhalang muncul kembali, serta menambahkan komponen \emph{Observation-Centric Momentum} (\emph{OCM}) untuk memperbaiki pencocokan data berdasarkan arah dan kecepatan gerak yang diukur dari observasi historis\cite{Cao2023}.
 
-\newpage
-\subsection{Detexify LaTeX handwritten symbol recognition}
-\begin{center}
-	\includegraphics[width=\linewidth]{bab2/Detexify}
-	\captionof{figure}{http://detexify.kirelabs.org/classify.html}
-	\label{fig:detexify}
-\end{center}
-\newpage
-\subsection{Tables Generator }
-\begin{center}
-	
-	\includegraphics[width=0.7\linewidth]{bab2/TabelGenerator}
-	\captionof{figure}{https://www.tablesgenerator.com/}
-	\label{fig:tabelgenerator}
-\end{center}
+\subsection{ByteTrack}
+ByteTrack adalah algoritma pelacakan \emph{Multi-Object Tracking} (MOT) yang meningkatkan akurasi dengan memanfaatkan hampir keseluruhan deteksi objek, dari deteksi dengan skor rendah dan deteksi dengan skor tinggi. Dengan metode ByteTrack, dapat mengatasi permasalahan deteksi objek yang tersembunyi dalam frame, serta fragmentasi jalur pelacakan yang sering terjadi pada objek yang tidak terdeteksi dalam frame berturut-turut. Keunggulan ByteTrack dalam pelacakan adalah melakukan asosiasi terhadap objek deteksi yang hilang dengan objek yang telah dilacak pada frame sebelumnya, dan juga ketika objek terhalang atau memiliki kualitas rendah. Sehingga, hal tersebut memungkinkan pemulihan objek yang hilang, serta meningkatkan kontinuitas pelacakan \cite{Zhang2022ByteTrack}.
 
-%\begin{landscape}
+\begin{figure} [H] \centering
+  \includegraphics[scale=1]{bab2/mota_bytetrack.png}
+  \caption{Perbandingan MOTA-IDFI-FPS terhadap \emph{tracker}}
+  \label{fig:mota-tracker}
+\end{figure}
 
+Dalam grafik pada Gambar \ref{fig:mota-tracker} menunjukkan bahwa ByteTrack sebagai algoritma \emph{Multiple Object Tracking Accuracy} tertinggi dibandingkan dengan yang lain. ByteTrack sangat efisien dalam hal pelacakan sehingga FPS yang dihasilkan juga lebih tinggi meskipun tidak secepat FairMOT. Algoritma ByteTrack menggabungkan dua proses asosiasi dalam \emph{tracking} yang dilakukan. Pertama, deteksi pada skor tinggi (\emph{high-confidence}) yang memastikan pelacakan akurat pada objek yang tidak terhalang dan mencocokkan objek yang terdeteksi sebelumnya. Kedua, deteksi dengan skor rendah (\emph{low-confidence}), yang memungkinkan memulihkan objek yang sempat tidak terlacak dan terfragmentasi dalam frame sebelumnya. Penggunaan Kalman Filter dan algoritma Hungarian pada ByteTrack untuk mencocokkan deteksi baru dengan jalur \emph{tracking} yang telah ada sehingga memungkinkan \emph{tracking} yang lebih andal meskipun dalam kondisi berbeda-beda \cite{Zhang2022ByteTrack}.
 
-	\begin{landscape}
-		
-		\subsection{Long Table}
-		\begin{spacing}{1}	
-			\begin{longtable}{|p{3cm}| p{7cm} | p{7cm} | p{7cm}|}
-				\caption{Posisi dan kontribusi penelitian}\label{table:Posisidankontribusipenelitian} \\ \hline
-				\nohyphens{\textbf{Topik riset Registrasi}} & 
-				Metode & 
-				Kontribusi Peneliti Lain &
-				Kontribusi Peneliti \\ \hline
-				\endfirsthead
-				\caption[]{Posisi dan kontribusi penelitian \textit{(Lanjutan..)}}\\ \hline
-				Topik riset Registrasi & 
-				Metode & 
-				Kontribusi Peneliti Lain &
-				Kontribusi Peneliti \\ \hline
-				\endhead
-				\multicolumn{4}{r}{{\textit{Tabel bersambung..}}} \\ 
-				\endfoot
-				\endlastfoot 
-				Ekstraksi feature & Kurvature pada suatu titik dihitung pada beberapa skala dengan fitting permukaan ke titik lokal pada berbagai macam ukuran. (Ho dan Gibbins, 2009) & Multi-scale Feature Extraction from 3D Meshes and Unstructured Point Cloud & \\ \hline 
-				Estimasi vektor normal & Fitting tangen vektor pada data titik untuk menentukan vektor normal berbasis local voronoy mesh. (OuYang dan Feng, 2005) & Metoda baru untuk estimasi vektor normal. & \\ \hline 
-				Estimasi principal direction & The Adjacent-Normal Cubic Approximation (Goldfeather dan Interrante, 2004) & Estimasi principal direction dan vektor normal pada permukaan dengan noise yang tinggi. &\\ \hline 
-				Registrasi berbasis fitur permukaan. & Normal distribution transform. (Pathak, Birk, Vaskevicius, dan Poppinga, 2010) & Online registrasi pose untuk menentukan posisi robot. & \\ \hline 
-				Registrasi 3D berbasis warna. & Warna RGB (Johnson dan Kang, 1997). (Douadi dkk., 2006) & Menggantikan fitur geometri ketika informasi geometri permukaan tidak mencukupi. & \\ \hline 
-				& Registrasi berbasis warna HSV. (Druon, Aldon, dan Crosinier, 2006) & Registrasi tidak dipengaruhi oleh intensitas warna. & \\ \hline 
-				& Registrasi dengan Modified color ICP kombinasi antara warna RGB dengan jarak ecludiean. (Joun, Ang, Kang, Chung, dan Yu, 2009) & Registrasi untuk lingkungan 3D. & \\ \hline 
-				Registrasi Berbasis geometri permukaan. & Registrasi dengan angular invariant feature. (Jiang dkk., 2009) & \textit{Angular invariant feature} invariant terhadap rotasi dan skala. & \\ \hline 
-				& Point Feature Histograms (PFH) robust multi-dimensional features. (Rusu, Blodow, Marton, Soos, dan Beetz, 2007) & Kombinasi curvature, vektor normal, dan vektor principal direction. & \\ \hline 
-				& Fitting quadratic surface (Chen dan Bhanu, 2007) & Permukaan lokal sebagai deskriptor untuk kombinasi curvature, vektor normal, dan vektor principal direction. & \\ \hline 
-				& & & Registrasi Citra 2D multiview untuk penangkap gerak manusia Semina Sesindo 2010 (Yuniarno, Mardi, Sumpeno, dan Hariadi, 2010) \\ \hline 
-				& & & Registrasi permukaan berbasis surface curvature feature. Jurnal Jatit (Yuniarno, Hariadi, dan Purnomo, 2013a) \\ \hline 
-				Outlier Removal & Tiga konstrain untuk memperoleh korspondensi akurat. (Liu, 2008) & Korespondensi yang akurat & \\ \hline 
-				& Dua konstrain untuk memperoleh korspondensi akurat. (Xin dan Pu, 2010) & Perbaikan tiga konstrain yang diusulkan oleh Liu dengan meletakan origin ke titik berat permukaan. & \\ \hline 
-				& & & Perbaikan korespondensi dengan rigid constraint berbasis dua titik referensi dan surface curvature feature Jurnal Kursor (Yuniarno, Hariadi, dan Purnomo, 2013b) \cite{Brathwaite2009} \\ \hline 
-			\end{longtable}
-		\end{spacing}
-	\end{landscape}
+\section{Ground Sampling Distance}
+Ground Sampling Distance (GSD) adalah ukuran resolusi spasial citra udara yang menghubungkan satu piksel pada gambar dengan ukuran sebenarnya di permukaan tanah. Semakin kecil nilai GSD, semakin detail citra yang dihasilkan, karena setiap piksel mewakili area yang lebih kecil. Parameter ini krusial dalam fotogrametri dan aplikasi survei udara, karena akan menentukan sejauh mana objek di permukaan dapat dikenali dan diukur dengan akurat.
 
+Secara matematis, GSD dapat dirumuskan sebagai berikut:
+\begin{equation}
+  \label{eq:gsd_basic}
+  \mathrm{GSD}
+  = \frac{H \times \mathrm{PixelSize}}{f}
+\end{equation}
+Di sini $H$ menyatakan ketinggian terbang (dalam meter), $f$ adalah panjang fokus kamera (dalam milimeter), dan \emph{PixelSize} adalah ukuran satu piksel pada sensor, yang dihitung dari lebar sensor $S_w$ (mm) dibagi jumlah piksel pada sumbu lebar gambar $\mathrm{ImgW}$:
+\begin{equation}
+  \label{eq:pixel_size}
+  \mathrm{PixelSize}
+  = \frac{S_w}{\mathrm{ImgW}}
+\end{equation}
+Dengan menggantikan \eqref{eq:pixel_size} ke dalam \eqref{eq:gsd_basic}, diperoleh:
+\begin{equation}
+  \label{eq:gsd_full}
+  \mathrm{GSD}
+  = \frac{H \times S_w}{f \times \mathrm{ImgW}}
+\end{equation}
 
-%\end{landscape}
-\section{Tabel Rencana Penelitian }
+Sebagai contoh, untuk penerbangan pada ketinggian $H = 20\,$m dengan lebar sensor $S_w = 12{,}83\,$mm, fokus $f = 8{,}6\,$mm, dan lebar citra $\mathrm{ImgW} = 5472$ piksel, nilai GSD yang diperoleh adalah sekitar
+\[
+  \mathrm{GSD}
+  = \frac{20 \times 12{,}83}{8{,}8 \times 640}
+  \approx 4{,}66\ \mathrm{cm/piksel}.
+\]
+Angka ini menunjukkan bahwa satu piksel pada citra setara dengan area seluas kurang lebih $4{,}68\,$cm di permukaan.
 
-
-\begin{table}[h!]
-	
-	\caption{Rencana Penelitian}
-	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
-		\hline
-		& \multicolumn{9}{c|}{\textbf{Semester Ke}} \\ \cline{2-10} 
-		\multirow{-2}{*}{} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ \hline
-		Rencana 1 & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} &  &  &  &  \\ \hline
-		Rencana 2 &  &  & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} &  &  \\ \hline
-		Rencana 3 &  &  &  &  &  & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000} \\ \hline
-		Rencana 4 &  & \cellcolor[HTML]{000000} & \cellcolor[HTML]{000000}{\color[HTML]{000000} } & \cellcolor[HTML]{000000}{\color[HTML]{000000} } & \cellcolor[HTML]{000000}{\color[HTML]{000000} } & \cellcolor[HTML]{000000}{\color[HTML]{000000} } & \cellcolor[HTML]{000000}{\color[HTML]{000000} } & \cellcolor[HTML]{000000}{\color[HTML]{000000} } & \cellcolor[HTML]{000000}{\color[HTML]{000000} } \\ \hline
-	\end{tabular}
-\end{table}
-
+Dalam praktiknya, perubahan ketinggian terbang akan memengaruhi GSD secara linier: peningkatan $H$ akan menaikkan nilai GSD, sehingga detail citra cenderung berkurang. Selain itu, pemilihan ukuran sensor dan resolusi gambar juga perlu disesuaikan dengan tujuan pemetaan. Misalnya, pada drone DJI Phantom 4 Pro, variasi ketinggian terbang antara 20-40 m dapat menghasilkan GSD antara 4-8 cm/piksel, sehingga operator dapat memilih kombinasi parameter yang optimal untuk keseimbangan antara cakupan area dan ketajaman detail objek.
 
 

@@ -3,29 +3,56 @@
   \chapter{PENDAHULUAN}
 \end{spacing}
 
-
 \pagenumbering{arabic}
 \vspace{4ex}
 
-
 \section{Latar Belakang}
-LaTeX adalah sistem penyusunan huruf yang berkualitas tinggi; itu termasuk fitur yang dirancang untuk produksi dokumentasi teknis dan ilmiah. LaTeX adalah standar de facto untuk komunikasi dan publikasi mm,<<,,dokumen ilmiah. LaTeX tersedia sebagai perangkat lunak gratis.
+Peningkatan populasi di Indonesia selalu diikuti dengan peningkatan jumlah kendaraan. Menurut Data Korlantas Polri, terhitung pada bulan Agustus 2024, jumlah mobil pribadi mencapai 20,122,177 unit, dan jumlah sepeda motor mencapai 137,350,299 unit \cite{datakendaraan2024}. Apabila dilihat dari tahun-tahun sebelumnya, jumlah kendaraan yang telah beredar di Indonesia pada Februari 2023 mencapai 154,4 juta unit untuk semua jenis kendaraan bermotor yang aktif. Jumlah tersebut mencakup 127,9 juta unit sepeda motor, 19,17 juta unit mobil, dan sisanya terdapat angkutan barang serta mobil besar \cite{datakendaraan2023}. Dari angka tersebut membuktikan bahwa seiring bertambah tahun, jumlah kendaraan semakin meningkat sehingga menyebabkan kemacetan lalu lintas.
+
+Kemacetan ini merupakan salah satu dampak yang terjadi. Peningkatan jumlah kendaraan juga memperbesar resiko kecelakaan lalu lintas yang menimbulkan korban, terutama menyebabkan cedera \cite{Ciss2019}. Faktor penyebab kecelakaan ini sangat banyak, salah satunya yang menjadi penyebab utama adalah kelalaian pengendara. Kelalaian ini disebabkan karena banyak pengendara yang mengendarai tanpa menaati aturan yang sudah ada, seperti batasan kecepatan pada beberapa titik jalan yang sudah diberi petunjuk \cite{jurnalspeed-roadsafety-relation}. Dikarenakan banyaknya populasi pengendara, diperlukan suatu inovasi yang dapat mengawasi kendaraan yang melintas. Maka dari itu, dikembangkan suatu alat yang diharapkan dapat menjadi solusi dari permasalahan diatas, yaitu dengan menggunakan \emph{drone}, dimana dapat dikendalikan sesuai dengan kebutuhan dan menjangkau lebih luas \cite{Kanistras2013}.
+
+\emph{Drone} atau pesawat tanpa awak ini sudah banyak digunakan dalam pengaplikasian \emph{mapping} dan \emph{monitoring} dari atas dengan jangkauan yang luas. Pengendalian jarak jauh yang dapat merekam serta mengawasi dengan sistem video yang ditransmisikan dari kamera di \emph{drone} ke \emph{remote control}. Efektivitas yang dihasilkan dari penggunaan pesawat tanpa awak ini yang menjadi salah satu alasan dipilihnya \emph{drone}. Pemanfaatan pesawat tanpa awak ini sudah banyak dikembangkan dan diaplikasikan ke media pemanfaatan yang mana membutuhkan pengambilan data secara aerial, yaitu dari atas benda yang dijadikan objek data \cite{ZhangZhu2023}.
+
+Dari keunggulan yang dimiliki oleh pesawat tanpa awak ini, tentu akan sangat membantu dalam menyelesaikan beberapa masalah yang terjadi di perkotaan. Dengan pemanfaatan \emph{drone} terhadap pengawasan kendaraan dari atas akan membuat efektivitas dalam pemantauan. Dengan ditambahnya fitur membaca kecepatan kendaraan dari data yang diambil kamera \emph{drone}. 
+
+Pemrosesan citra video yang sudah lama diaplikasikan dan dikembangkan merupakan teknologi utama yang akan digunakan dalam membuat otomasi estimasi kecepatan kendaraan \cite{Tekalp1995}. Dengan teknologi pengidentifikasian objek, pembacaan pola, serta alat perhitungan dalam membaca data yang didapat. Didukung juga dengan program dalam menghitung kecepatan kendaraan terhadap video \emph{streaming} yang dihasilkan oleh \emph{drone}, dan penggunaan suatu perangkat untuk menjalankan program komputasi tersebut dimana saja hanya dengan perlu menghubungkan antar perangkat melalui sebuah protokol.
+
+Teknologi pemrosesan citra ini menjadi salah satu teknologi yang semakin banyak digunakan karena kebutuhan akan otomasi untuk melakukan pengawasan yang terfokus pada beberapa objek saja. Maka, dalam menghitung estimasi kecepatan kendaraan yang melintas, diperlukan deteksi objek sehingga pemrosesan citra ini akan diaplikasikan dalam pengembangan sistem estimasi kecepatan dengan \emph{drone} pada penelitian ini.
 
 \section{Rumusan Masalah}
-Bagian ini untuk menulis rumusan masalah.
-\section{Tujuan}
-Tujuan dari tutorial ini adalah \cite{Koza1996}
-\begin{enumerate}
-	\item Tujuan Pertama
-	\item Tujuan Kedua
-\end{enumerate}
-\section{Batasan Masalah}
-Tutorial ini dibatasi pada penggunaan Latex untuk penulisan tesis. 
-\section{Manfaat}
-Diharapkan mahasiswa dapat mudah menulis tesis sehingga dapat cepat menyelesaikan studi di Magister Teknik Elektro ITS.
-\subsection{Contoh Subseksi }
-\subsubsection{Contoh SubSub Seksi}
+Berdasarkan latar belakang tersebut, jumlah kendaraan terus meningkat sehingga dibutuhkan pengawasan lalu lintas yang tidak perlu membangun alat pengawasan di banyak tempat. Belum meratanya sistem pengawasan lalu lintas yang dapat membaca kecepatan kendaraan melintas menjadi permasalahan sehingga fleksibilitas dibutuhkan untuk melakukan pengawasan tersebut.
 
-\begin{equation}
-y=cos(\alpha x)
-\end{equation}
+\section{Batasan Masalah}
+Pengembangan penelitian ini terdapat beberapa keterbatasan dalam sistem ini, di antaranya adalah delay pada stream video yang menghambat pemrosesan waktu nyata (\emph{real-time}) dan rendahnya tingkat FPS (\emph{frames per second}) yang menyebabkan estimasi kecepatan tidak dapat dilakukan secara \emph{real-time} dengan akurat. Selain itu, perangkat Jetson Nano juga mengalami kesulitan dalam menjalankan pemrosesan secara terus-menerus dalam jangka waktu yang lama, mengingat beban kerja tinggi pada pengolahan video dan estimasi kecepatan kendaraan. Sehingga, sistem ini menghadapi tantangan dalam hal kecepatan pemrosesan, ketepatan waktu nyata, dan ketergantungan pada koneksi serta keterbatasan sumber daya perangkat keras.
+
+\section{Tujuan}
+Tujuan dilakukan penelitian ini adalah untuk peningkatan efektivitas dalam pemantauan lalu lintas dengan pemanfaatan \emph{drone} yang menghasilkan estimasi kecepatan kendaraan yang melintas. Maka, diharapkan dapat membantu satuan otoritas setempat dalam mengawasi lalu lintas dengan mudah dan fleksibel. Dengan penggunaan teknologi pengolahan citra video yang didukung Jetson Nano sehingga dapat melakukan perhitungan dengan alat yang \emph{portable} yaitu dapat dimana saja dalam menjalankan komputasinya.
+ 
+\section{Manfaat}
+Berdasarkan hal-hal yang telah dijelaskan diatas, penelitian tugas akhir ini memiliki beberapa manfaat yang dihasilkan, antara lain:
+\begin{enumerate}
+    \item Hasil perhitungan kecepatan kendaraan yang melintas secara langsung.
+    \item Meningkatkan efektivitas pengawasan dan pemantauan lalu lintas yang berbasis perangkat \emph{edge} sehingga dapat digunakan \emph{portable}, dan dapat diterapkan di berbagai lokasi.
+    \item Memberikan kontribusi terhadap pengembangan sistem pemantauan lalu lintas berbasis drone, yang dapat menjadi alternatif pemantauan dengan biaya lebih rendah dan kemampuan mobilitas tinggi.
+\end{enumerate}
+
+\section{Sistematika Penulisan}
+Laporan penelitian tugas akhir ini disusun secara sistematis dan terstruktur sehingga mudah dipahami dan dipelajari oleh pembaca. Alur sistematika penulisan laporan penelitian ini, yaitu:
+
+\begin{enumerate}
+    \item \textbf{BAB I Pendahuluan} \\
+    Bab ini berisi tentang uraian latar belakang, permasalahan, penegasan dan alasan pemilihan judul, sistematika laporan, tujuan, dan manfaat.
+    
+    \item \textbf{BAB II Tinjauan Pustaka} \\
+    Bab ini berisi tentang uraian penelitian terdahulu dan teori yang berkaitan maupun yang digunakan pada penelitian ini secara sistematis. Teori-teori yang disebutkan digunakan sebagai dasar dalam penelitian ini antara lain informasi tentang deep learning, drone, kamera, serta teori penunjang lainnya.
+    
+    \item \textbf{BAB III Desain dan Implementasi Sistem} \\
+    Bab ini berisi tentang perancangan dan implementasi sistem yang digunakan dalam penelitian ini. Penjelasan tentang perangkat keras, dan perangkat lunak yang digunakan, serta alur kerja sistem yang digunakan.
+    
+    \item \textbf{BAB IV Pengujian, Analisis, dan Perbandingan} \\
+    Bab ini berisi tentang tahap pengujian dari penelitian yang dilakukan terhadap data yang sebelumnya telah dikumpulkan. Pada bab ini juga ditampilkan visualisasi hasil pengujian dan perbandingan dengan penelitian terdahulu yang terkait.
+    
+    \item \textbf{BAB V Penutup} \\
+    Bab ini berisi tentang kesimpulan dari penelitian yang telah dilakukan, saran, dan rekomendasi untuk penelitian selanjutnya.
+\end{enumerate}
+

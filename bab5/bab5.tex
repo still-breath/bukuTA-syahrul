@@ -1,15 +1,28 @@
-\chapter{PENUTUP}
-\label{sec:chap5_tutup}
-\vspace{1ex}
-\section*{}
-Setelah penerapan metode terhadap masalah yang ingin diselesaikan pada \vspace{1ex}
+\begin{spacing}{1.2}
+	\chapter{PENUTUP}
+	\label{sec:chap5_penutup}
+\end{spacing}
+\vspace{4ex}
 
 \section{Kesimpulan}
 \label{sec:sec4_kesimpulan}
 \vspace{1ex}
-\lipsum[1]
+Berdasarkan hasil pengujian dan analisis yang telah dilakukan didapatkan beberapa kesimpulan, antara lain:
+\begin{enumerate}
+    \item Sistem estimasi kecepatan telah berhasil menjalankan deteksi objeknya dengan \emph{confidence threshold} diatas 0,5 untuk setiap \emph{class}, yaitu motor, mobil, dan truk.
+    \item \emph{Tracking} masih dapat disempurnakan lagi atau menggunakan metode yang lain sehingga \emph{bounding box} tetap menempel terus pada objek deteksi.
+    \item Sistem lebih optimal saat dijalankan di ketinggian 20m. Untuk 30m dan 40m sebenarnya bisa lebih optimal tetapi terhalang dengan spesifikasi perangkat dan juga metode deteksi (YOLOv8) yang digunakan cukup memakan memori.
+    \item Deteksi malam hari berhasil dengan pencahayaan yang minimal tetapi perlu disempurnakan di bagian \emph{tracking}.
+    \item Akurasi terendah didapatkan saat pengujian kecepatan 20km/h pada siang hari dengan ketinggian 30m. Untuk akurasi tertinggi diperoleh saat pengujian malam hari dengan ketinggian 20m, kecepatan 40km/h.
+    \item Sistem ini dapat berjalan dimana saja dan mampu mendapatkan data nya di saat itu juga meskipun ada \emph{delay}. Implementasinya hanya memerlukan laptop, \emph{handphone}, dan internet yang tidak menguras kuota banyak saat menjalankan server satu jaringan. Tetapi, tidak bisa dijalankan terlalu lama karena terhalang perangkat komputasinya, Jetson Nano
+\end{enumerate}
 \section{Saran}
 \label{sec:sec4_saran}
 \vspace{1ex}
-\lipsum[2]
+\begin{enumerate}
+    \item Model deteksi harus diperbaiki lagi karena masih bisa disempurnakan melalui variasi akuisisi data.
+    \item Menggunakan metode yang lebih ringan daripada YOLOv8 karena Jetson Nano sebenarnya sudah tidak terlalu kompatibel dengan Ultralytics versi 8 keatas.
+    \item Dibutuhkan sistem pengiriman data atau \emph{streaming} yang lebih baik lagi dan mendukung untuk perangkat dengan spesifikasi rendah.
+    \item Diperlukan pengujian yang lebih siap dan matang supaya tidak terjadi ketimpangan yang tidak diharapkan
+\end{enumerate}
 
