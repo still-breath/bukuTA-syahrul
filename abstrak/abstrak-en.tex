@@ -23,7 +23,8 @@
 
 % Ubah paragraf berikut dengan abstrak dari tugas akhir dalam Bahasa Inggris
 \emph{
-  The increase in population in Indonesia is directly followed by an increase in the risk of traffic congestion and accidents. From the data obtained, it can be seen that from year to year the number of motorized vehicles in Indonesia is increasing, followed by the number of traffic accidents that occur, where one of the factors is speed limit violations. To overcome this problem, an aerial monitoring tool was developed using drones that can calculate vehicle speed estimates supported by video image processing technology and computing programs in their calculations. Drones are used because of their ability to monitor directly from the air with remote control. This system is also developed based on  Jetson Nano so that it can be run in anywhere. The method used in processing this video image is to utilize YOLOv8 for accurate and precise results.}
+  This system is designed to estimate vehicle speed on the NVIDIA Jetson Nano by integrating optimized YOLOv8 object detection with the lightweight yet accurate OC-SORT multi-object tracking algorithm to preserve each vehicle’s identity across frames. Speed is calculated from the per-frame pixel displacement of bounding box coordinates. By leveraging TensorRT for inference and an efficient image-preprocessing pipeline, the system achieves a throughput of 8–12 FPS for simultaneous detection and tracking. With its compact configuration and cost-effective hardware, this solution offers a practical alternative for urban surveillance without requiring additional lighting infrastructure or centralized processing.
+}
 
 % Ubah kata-kata berikut dengan kata kunci dari tugas akhir dalam Bahasa Inggris
-\emph{Keywords}: \emph{traffic control, Drone, speed estimation, jetson nano, YOLOv8}
+\emph{Keywords}: \emph{Traffic Control, Drone, Speed Estimation, Jetson Nano, YOLOv8}

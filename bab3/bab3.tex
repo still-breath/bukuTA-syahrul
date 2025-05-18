@@ -69,7 +69,7 @@ Pembuatan contoh pelatihan data baru untuk model yang dijalankan dari beberapa v
 \subsection{\emph{Training}}
 Setelah dataset menjalani \emph{pre-processing} dan \emph{augmentation}, maka akan dilakukan pelatihan model deteksi objek dengan YOLOv8 yang merupakan \emph{framework} yang dikembangkan oleh Ultralytics. Proses \emph{training} ini akan belajar memahami pola dan mengenali objek yang dideteksi pada citra data. Model akan mengalami \emph{epoch} yang dapat diatur jumlah siklus sesuai kebutuhan. \emph{Epoch} merupakan siklus yang diproses untuk melatih model dengan setiap contoh maupun sampel dataset yang telah diproses sebelumnya. Model akan belajar mengenali objek dengan mengurangi \emph{loss} yang dihasilkan, dimana \emph{loss} merupakan jumlah banyaknya perbedaan yang dihasilkan dari prediksi model dengan anotasi yang sudah diatur. 
 
-Pelatihan dilakukan dengan jumlah epoch sebanyak 250, dan saya atur menjadi \emph{half=True} (fp16). \emph{Batch size} diatur 18, dan \emph{workers} menjadi 18. Setelah didapatkan model (.pt) dari hasil pelatihan, diubah menjadi format onnx kemudian dikonversikan ke TensorRT. Proses \emph{training} ini menggunakan perangkat keras dengan spesifikasi yang dapat dilihat pada Tabel \ref{tbl:specpc}.
+Pelatihan dilakukan dengan jumlah epoch sebanyak 250, dan diatur menjadi \emph{half=True} (fp16). \emph{Batch size} diatur 16, dan \emph{workers} menjadi 8. Setelah didapatkan model (.pt) dari hasil pelatihan, diubah menjadi format onnx kemudian dikonversikan ke TensorRT. Proses \emph{training} ini menggunakan perangkat keras dengan spesifikasi yang dapat dilihat pada Tabel \ref{tbl:specpc}.
 
   \begin{table}[h!]
     \centering
@@ -86,7 +86,7 @@ Pelatihan dilakukan dengan jumlah epoch sebanyak 250, dan saya atur menjadi \emp
   \end{table}
  
 \section{Deteksi Objek}
-Deteksi objek dilakukan dengan menggunakan kamera \emph{drone} DJI Phantom 4 Pro dengan resolusi 720p dan 30 fps. Hasil tangkapan dari \emph{drone} akan dikirim melalui \emph{streaming} RTMP yang akan diterima oleh Jetson Nano untuk dilakukan pendeteksian objek dengan model YOLOv8 yang sudah dikonversi ke TensorRT.
+Deteksi objek dilakukan dengan menggunakan kamera \emph{drone} DJI Phantom 4 Pro yang mana sudah diatur resolusinya menjadi 720p dan 30 fps. Hasil tangkapan dari \emph{drone} akan dikirim melalui \emph{streaming} RTMP yang akan diterima oleh Jetson Nano untuk dilakukan pendeteksian objek dengan model YOLOv8 yang sudah dikonversi ke TensorRT.
 
 Deteksi objek dilakukan pada sebuah video yang dikirim melalui \emph{stream} RTMP. Dari \emph{streaming} tersebut, akan diterima hasil tangkapan dari kamera drone yang kemudian diubah ke 360p untuk melakukan efisiensi pemrosesan oleh Jetson Nano. Lalu, beberapa objek yang menjadi fokus deteksi, antara lain mobil, motor, dan truk akan terdeteksi sesuai dengan objek yang melintas dan tertangkap kamera drone. Pendeteksian ini dijalankan dengan menggunakan model YOLOv8 yang telah dikonversi menjadi TensorRT untuk mendukung kapabilitas pendeteksian di Jetson Nano. Objek yang terdeteksi akan diberi label dan \emph{bounding box} sesuai dengan kelasnya. \emph{Bounding box} dan label ini akan menunjukkan objek apa yang ada didalam video tersebut. Pada Gambar \ref{fig:deteksi objek} dapat dilihat hasil deteksi objek yang dilakukan dengan model YOLOv8 dengan format TensorRT.
 
@@ -95,13 +95,13 @@ Deteksi objek dilakukan pada sebuah video yang dikirim melalui \emph{stream} RTM
   \caption{Hasil Deteksi Objek}
   \label{fig:deteksi objek}
 \end{figure}
-
+\vspace{-3ex}
 Hasil implementasi deteksi objek pada video menggunakan model YOLOv8 yang sudah dilatih dan dikonversi menjadi TensorRT ditunjukkan pada Gambar \ref{fig:deteksi objek}. Pada Gambar \ref{fig:deteksi objek} didapatkan \emph{confidence threshold} diatas 0.5, dikarenakan deteksi objek yang dilakukan diatur untuk membaca objek yang memiliki \emph{confidence threshold} diatas 0.45 lalu memberi \emph{bounding box} pada objek yang terdeteksi.
 
 \section{\emph{Tracking} Objek}
-Pada tahap ini, objek akan dilakukan \emph{tracking} setelah terdeteksi. Untuk algoritma \emph{tracking} yang digunakan adalah OC-SORT dan ByteTrack. Dari dua metode \emph{tracking} tersebut terdapat perbedaan yang signifikan pada penelitian yang dilakukan dimana ByteTrack lebih cepat pemrosesannya daripada OC-SORT tetapi mengorbankan akurasi lebih banyak. Maka, metode OC-SORT yang digunakan dalam \emph{tracking} di penelitian ini.
+Pada tahap ini, objek akan dilakukan \emph{tracking} setelah terdeteksi. Untuk algoritma \emph{tracking} yang digunakan adalah OC-SORT dan ByteTrack. Dari dua metode \emph{tracking} tersebut terdapat perbedaan yang signifikan pada penelitian yang dilakukan dimana ByteTrack lebih cepat pemrosesannya daripada OC-SORT tetapi mengorbankan akurasi lebih banyak. Dikarenakan hasil \emph{tracking} dari ByteTrack kurang baik hasilnya, dimana terkadang \emph{bounding box} tidak tercetak ke semua objek deteksi, meskipun pemrosesan lebih cepat. Maka, metode OC-SORT yang digunakan dalam \emph{tracking} di penelitian ini.
 
-Untuk perhitungan \emph{center} dalam penentuan \emph{bounding box} nya menggunakan persamaan titik tengah dalam geometri analitik, dengan menjumlahkan koordinat pojok sehingga ditemukan titik tengah dari objek deteksi setiap \emph{frame} dan diberi ID unik beserta nama \emph{class} sesuai dengan jenis objek yang terdeteksi.
+Untuk perhitungan \emph{center} dalam penentuan \emph{bounding box} digunakan persamaan titik tengah dalam geometri analitik, dengan menjumlahkan koordinat pojok sehingga ditemukan titik tengah dari objek deteksi setiap \emph{frame} dan diberi ID unik beserta nama \emph{class} sesuai dengan jenis objek yang terdeteksi.
 
 \section{Estimasi Kecepatan}
 Pada proses ini, objek yang telah terdeteksi dan menghasilkan \emph{bounding box} akan diukur kecepatannya. Dilakukan perhitungan titik tengah dengan menggunakan persamaan Euclidean yang dapat dilihat pada rumus \ref{eq:euclidean}.
@@ -122,7 +122,7 @@ y_2 & : \text{Koordinat $y$ titik kedua} \\
 \end{align*}
 \end{flushleft}
 
-Kemudian objek yang terdeteksi akan bergerak sehingga perpindahannya dihitung dengan selisih titik tengah. Hasil selisih tersebut akan dilakukan pembagian dengan \emph{Pixels per Meter} (PPM) yang didapatkan dari Persamaan \ref{eq:gsd_full}, setelah itu dikonversikan dimana hasilnya berbentuk cm/piksel menjadi piksel per meter. Berikut adalah hasil skala yang didapatkan untuk setiap ketinggian yang dijadikan variabel penelitian. 
+Kemudian objek yang terdeteksi akan bergerak sehingga perpindahannya dihitung dengan selisih titik tengah. Hasil selisih tersebut akan dilakukan pembagian dengan \emph{Pixels per Meter} (PPM) yang didapatkan dari Persamaan \ref{eq:gsd_full}, setelah itu dikonversikan dimana hasilnya dari yang berbentuk cm/piksel menjadi piksel per meter. Berikut adalah hasil skala yang didapatkan untuk setiap ketinggian yang dijadikan variabel penelitian. 
 
 \begin{table}[h!]
   \centering
@@ -164,6 +164,8 @@ Perangkat komputasi yang digunakan adalah Jetson Nano. Jetson Nano akan dikoneks
   \caption{Diagram Alir Pengiriman Data}
   \label{fig:alurdata}
 \end{figure}
+
+Pada Gambar \ref{fig:alurdata}, inisialisasi server MediaMTX dilakukan dengan laptop dimana semua perangkat akan diatur menjadi 1 jaringan yang sama. \emph{Client} disini adalah perangkat komputasi yang digunakan, Jetson Nano.
 
 Untuk algoritma yang digunakan dalam program estimasi ini terdapat beberapa tahapan yang harus dilewati sehingga program dapat berjalan sesuai. Diagram proses algoritma program ditunjukkan pada Gambar \ref{fig:diagramproses}.
 

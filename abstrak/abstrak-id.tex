@@ -22,7 +22,8 @@
 \endgroup
 
 % Ubah paragraf berikut dengan abstrak dari tugas akhir
-Peningkatan populasi penduduk di Indonesia secara langsung diikuti peningkatan resiko kemacetan dan kecelakaan lalu lintas. Dari data yang diperoleh, dapat diketahui bahwa dari tahun ke tahun jumlah kendaraan bermotor di Indonesia semakin meningkat diikuti dengan angka kecelakaan lalu lintas yang terjadi, dimana salah satu faktornya adalah pelanggaran batasan kecepatan. Untuk mengatasi masalah tersebut, dikemabangkan sebuah alat pemantauan dari udara dengan pemanfaatan \emph{drone} yang dapat melakukan perhitungan estimasi kecepatan kendaraan dengan didukung teknologi pengolahan citra video beserta program komputasi dalam menghitungnya. \emph{Drone} dimanfaatkan karena kemampuannya dalam melakukan pemantauan secara langsung dari udara dengan pengontrol jarak jauh. Sistem ini juga dikembangkan dengan berbasis Jetson Nano sehingga dapat dijalankan dimana saja. Metode yang dilakukan dalam pengolahan citra video ini adalah dengan memanfaatkan \emph{YOLOv8} untuk hasil yang akurat dan tepat.
+Sistem ini dirancang untuk melakukan estimasi kecepatan kendaraan pada NVIDIA Jetson Nano dengan menggabungkan deteksi objek menggunakan YOLOv8 yang telah dioptimasi. Algoritma pelacakan multi-objek OC-SORT yang ringan namun akurat dalam mempertahankan identitas tiap kendaraan antar frame. Kecepatan setiap kendaraan dihitung berdasarkan perpindahan koordinat dalam satuan piksel per frame. Berkat memanfaatkan TensorRT untuk inferensi dan menyusun pipeline image preprocessing yang efisien sistem mampu mencapai throughput antara 8 hingga 12 FPS saat menjalankan deteksi dan pelacakan secara simultan Dengan konfigurasi yang ringkas dan penggunaan perangkat keras yang terjangkau, solusi ini menawarkan alternatif praktis untuk penerapan pengawasan di perkotaan, tanpa memerlukan infrastruktur pencahayaan atau pemrosesan terpusat yang kompleks.
+
 
 % Ubah kata-kata berikut dengan kata kunci dari tugas akhir
-Kata Kunci: pengawasan, Drone, stimasi kecepatan, Jetson Nano, YOLOv8
+Kata Kunci: Pengawasan, Drone, Estimasi kecepatan, Jetson Nano, YOLOv8

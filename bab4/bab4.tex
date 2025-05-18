@@ -5,25 +5,25 @@
 
 \vspace{4ex}
 
-Bab ini akan menunjukkan hasil pengujian dari sistem yang telah dibangun, kemudian dilakukan analisis terhadap hasil tersebut yang akan dijadikan bahan perbandingan dengan penelitian terdahulu. Mulai dari hasil pelatihan model hingga pengujian deteksi pada kejadian nyata sehingga diperoleh perbedaan serta hal-hal yang menjadi penyebab muncul perbedaan sistem antara penelitian ini dengan penelitian terdahulu.
+Bab ini akan menunjukkan hasil pengujian dari sistem yang telah dibangun, kemudian dilakukan analisis terhadap hasil tersebut yang akan dijadikan bahan perbandingan dengan penelitian terdahulu. Dari hasil pengujian hingga kualitas sistem yang mana diperoleh perbedaan serta beberapa hal yang menjadi penyebab muncul perbedaan sistem antara penelitian ini dengan penelitian terdahulu.
 
 \section{Alur Pengujian}
 Alur pengujian beserta analisis perbandingan akan dijelaskan secara runtut sebagai berikut:
 
-\begin{enumerate}
-    \item Pengujian Model terhadap Deteksi Kendaraan
-    \item Pengujian Sistem terhadap Kecepatan Rata-rata 20Km/H pada Siang Hari
-    \item Pengujian Sistem terhadap Kecepatan Rata-rata 40Km/H pada Siang Hari
-    \item Pengujian Sistem terhadap Kecepatan Rata-rata 20Km/H pada Malam Hari
-    \item Pengujian Sistem terhadap Kecepatan Rata-rata 40Km/H pada Malam Hari
-    \item Analisis Kualitas terhadap sistem
+\begin{enumerate}[nolistsep]
+    \item Pengujian model terhadap deteksi kendaraan
+    \item Pengujian sistem dan perbandingan terhadap kecepatan rata-rata dibawah 25Km/H pada siang hari
+    \item Pengujian sistem dan perbandingan terhadap kecepatan rata-rata diatas 25Km/H pada siang Hari
+    \item Pengujian sistem terhadap kecepatan rata-rata 20Km/H pada malam hari
+    \item Pengujian sistem terhadap kecepatan rata-rata 40Km/H pada malam hari
+    \item Analisis terhadap kualitas sistem
 \end{enumerate}
 
 \section{Pengujian Model terhadap Deteksi Kendaraan}
 Penelitian ini terdapat dua model yang telah dikembangkan, yaitu model deteksi kendaraan pada kondisi siang hari, dan kondisi malam hari.
 
 \subsection{Model Deteksi Siang Hari}
-Pelatihan model dengan kondisi siang hari yang menggunakan YOLOv8 telah dilakukan sebanyak 250 epoch, dengan setiap epoch memiliki \emph{value} yang berbeda-beda terhadap hasil akurasinya. Tabel akurasi hasil pelatihan model dapat dilihat pada Tabel \ref{table:akurasi model siang}.
+Pelatihan model dengan kondisi siang hari yang menggunakan YOLOv8 dengan dilakukan epoch sebanyak 250 epochs, dengan setiap epoch memiliki \emph{value} yang berbeda-beda terhadap hasil akurasinya. Tabel akurasi hasil pelatihan model dapat dilihat pada Tabel \ref{table:akurasi model siang}.
 
 \begin{table}[H]
 	\caption{Akurasi Hasil Pelatihan Model pada Siang Hari}
@@ -41,14 +41,16 @@ Pelatihan model dengan kondisi siang hari yang menggunakan YOLOv8 telah dilakuka
 \end{table}
 
 Setelah dilakukan pelatihan didapatkan beberapa grafik yang menunjukkan tingkat akurasi dari model hasil pelatihan yang telah dibuat. Grafik hasil pelatihan model siang dapat dilihat pada Gambar \ref{fig:grafik model siang}.
+\vspace{-3ex}
 \begin{figure} [H] \centering
   \includegraphics[scale=0.5]{bab4/results_siang.png}
   \caption{Grafik Hasil Pelatihan Model pada Siang Hari}
   \label{fig:grafik model siang}
 \end{figure}
-Gambar \ref{fig:grafik model siang} menunjukkan kurva hasil pelatihan model YOLOv8 selama 250 epoch. Grafik \emph{train/box\_loss} dan \emph{val/box\_loss} menggambarkan penurunan \emph{bounding box loss} secara konsisten baik pada data pelatihan maupun validasi, yang mengindikasikan bahwa model semakin akurat dalam menentukan lokasi objek. Penurunan serupa juga terlihat pada \emph{train/cls\_loss} dan \emph{val/cls\_loss}, yang merefleksikan peningkatan kemampuan model dalam mengklasifikasikan objek dengan benar. Selain itu, distribusi nilai prediksi model terhadap ground truth yang diukur melalui \emph{train/dfl\_loss} dan \emph{val/dfl\_loss} juga menunjukkan perbaikan yang stabil, menandakan bahwa prediksi model semakin mendekati nilai yang sebenarnya.
+\vspace{-5ex}
+Gambar \ref{fig:grafik model siang} menunjukkan kurva hasil pelatihan model YOLOv8 selama 250 epoch. Grafik \emph{train/box\_loss} dan \emph{val/box\_loss} menggambarkan penurunan \emph{bounding box loss} secara konsisten baik pada data pelatihan maupun validasi, yang mengindikasikan bahwa model semakin akurat dalam menentukan lokasi objek. Penurunan serupa juga terlihat pada \emph{train/cls\_loss} dan \emph{val/cls\_loss}, yang merefleksikan peningkatan kemampuan model dalam mengklasifikasikan objek dengan benar. Selain itu, distribusi nilai prediksi model terhadap \emph{ground truth} yang diukur melalui \emph{train/dfl\_loss} dan \emph{val/dfl\_loss} juga menunjukkan perbaikan yang stabil, menandakan bahwa prediksi model semakin mendekati nilai yang sebenarnya.
 
-Grafik \emph{precision} dan \emph{recall} menunjukkan peningkatan yang signifikan seiring bertambahnya jumlah epoch, hingga mendekati nilai maksimum, yang berarti model semakin andal dalam mendeteksi objek secara akurat dan konsisten. Sementara itu, metrik mAP50 dan mAP50-95 juga memperlihatkan tren kenaikan yang stabil meskipun terdapat fluktuasi kecil, hal ini mencerminkan performa model yang semakin baik dalam berbagai tingkat ambang IoU. Secara keseluruhan, grafik-grafik tersebut memperlihatkan proses pelatihan yang berhasil, dengan peningkatan akurasi deteksi dan penurunan nilai loss yang menunjukkan bahwa model belajar secara efektif dari waktu ke waktu.
+Grafik \emph{precision} dan \emph{recall} menunjukkan peningkatan yang signifikan seiring bertambahnya jumlah epoch, hingga mendekati nilai maksimum, yang berarti model semakin andal dalam mendeteksi objek secara akurat dan konsisten. Sementara itu, metrik mAP50 dan mAP50-95 juga memperlihatkan tren kenaikan yang stabil meskipun terdapat fluktuasi kecil, hal ini mencerminkan performa model yang semakin baik dalam berbagai tingkat ambang IoU. Secara keseluruhan, grafik-grafik pada Gambar \ref{fig:grafik model siang} memperlihatkan proses pelatihan yang berhasil, dengan peningkatan akurasi deteksi dan penurunan nilai loss yang menunjukkan bahwa model belajar secara efektif dari waktu ke waktu.
 
 Dari hasil pelatihan model siang didapatkan juga confusion matrix yang dapat dilihat pada Gambar \ref{fig:confusion matrix siang}. \emph{Confusion matrix} yang dihasilkan merupakan fitur yang disediakan Ultralytics, sehingga dapat diketahui akurasi setiap \emph{class} yang dijadikan objek deteksi.
 
@@ -61,28 +63,28 @@ Pada Gambar \ref{fig:confusion matrix siang} menunjukkan confusion matrix dari h
 
 \begin{enumerate}[nosep]
 	\item Kelas \emph{car}:
-	Model mengenali objek \emph{car} dengan cukup baik (97\% benar), meski masih ada yang salah dikira \emph{truck} (9\%) dan \emph{background} (22\%).
+	Model mengenali objek \emph{car} dengan cukup baik (97\% benar), dan sisanya kesalahan kecil mendteksi \emph{background}.
 
 	\item Kelas \emph{motorcycle}:
-	Sebanyak 74\% objek \emph{motorcycle} berhasil dikenali, tapi cukup banyak yang salah diprediksi sebagai \emph{background} (25\%).
+	Sebanyak 74\% objek \emph{motorcycle} berhasil dikenali, tapi cukup banyak yang salah diprediksi sebagai \emph{car} (22\%).
 
 	\item Kelas \emph{truck}:
-	Akurasi pada kelas \emph{truck} juga tinggi (82\%), namun masih ada kesalahan kecil ke \emph{background} dan \emph{car} (9\%).
+	Akurasi pada kelas \emph{truck} juga tinggi (82\%), namun masih ada kesalahan kecil di \emph{background} sebesar 3\% dan \emph{car} (15\%).
 
 	\item \emph{background}:
-	Model tampak kesulitan membedakan latar, dengan 33\% \emph{motorcycle} dan 22\% pada \emph{truck} diprediksi \emph{background}.
+	Model tampak kesulitan membedakan latar, dengan 36\% \emph{motorcycle} dan 35\% diprediksi \emph{car}.
 \end{enumerate}
 
 Secara keseluruhan, model menunjukkan performa terbaik pada kelas \emph{car}, namun masih memerlukan perbaikan dalam mengidentifikasi objek \emph{motorcycle} dan \emph{background}, terutama untuk mengurangi tingkat kesalahan klasifikasi yang tinggi terhadap latar belakang.
 
 Terdapat tahap validasi deteksi objek dari hasil pelatihan model siang yang telah dilakukan. Pada Gambar \ref{fig:validasi deteksi siang} dapat dilihat hasil deteksi dari model pelatihan beserta \emph{confidence threshold} yang diperoleh setiap objek deteksi.
-
+\vspace{-3pt}
 \begin{figure} [H] \centering
   \includegraphics[scale=0.25]{bab4/val_batch_siang.jpg}
   \caption{Validasi Deteksi Siang Hari}
   \label{fig:validasi deteksi siang}
 \end{figure}
-
+\vspace{-3pt}
 Dari hasil validasi didapatkan \emph{confidence threshold} untuk setiap objek terdeteksi diatas 0.5 dan ada dua objek motor terdeteksi yang mendapatkan 0.5.
 
 \subsection{Model Deteksi Malam Hari}
@@ -126,19 +128,19 @@ Confusion matrix pada Gambar \ref{fig:confusion matrix malam} menunjukkan hasil 
 
 \begin{enumerate}[nosep]
 \item Kelas \emph{car}:
-Model mampu mengenali objek \emph{car} dengan sangat baik, dengan tingkat keberhasilan 98\%. Meski demikian, masih ada 2\% yang keliru diklasifikasikan sebagai \emph{motorcycle}, dan 24\% lainnya salah dikenali sebagai \emph{truck}.
+Model mampu mengenali objek \emph{car} dengan sangat baik, dengan tingkat keberhasilan 98\%. Meski demikian, masih ada 2\% yang keliru diklasifikasikan sebagai \emph{motorcycle}.
 
 \item Kelas \emph{motorcycle}:  
-Objek \emph{motorcycle} terdeteksi dengan akurasi 97\%, namun sebagian besar sisanya (80\%) justru salah dikira sebagai \emph{truck}. Terdapat juga sedikit kesalahan ke kelas \emph{car} (2\%) dan \emph{background} (6\%).
+Objek \emph{motorcycle} terdeteksi dengan akurasi 97\%, dan salah memprediksi sebagai \emph{background} sebesar 3\%.
 
 \item Kelas \emph{truck}:  
-Model berhasil mengenali 71\% objek \emph{truck} dengan benar. Sisanya cenderung tertukar dengan \emph{motorcycle} (71\%) dan sedikit sebagai \emph{car} (3\%) atau \emph{background} (6\%).
+Model berhasil mengenali 71\% objek \emph{truck} dengan benar. Terdapat salah prediksi sedikit dimana \emph{car} terprediksi sebanyak 24\%.
 
-\item Kelas \emph{background}:  
-Kinerja model cukup lemah pada kelas ini, dengan hanya 3\% yang dikenali dengan benar. Beberapa bagian latar malah salah diprediksi sebagai \emph{motorcycle} (6\%), \emph{car} (6\%), dan \emph{truck} (2\%).
+\item \emph{background}:  
+Model mengenali \emph{background} hanya 47\%, sisanya menyebar di \emph{class} lain.
 \end{enumerate}
 
-Melalui analisis ini, dapat disimpulkan bahwa model \textit{YOLOv8} menunjukkan akurasi yang sangat baik dalam mendeteksi kelas \textit{car} dengan tingkat \textit{True Positive} yang sangat tinggi, sedangkan ada sedikit kesulitan dalam mendeteksi objek \textit{motorcycle} dan \textit{truck}, yang perlu diperbaiki. Selanjutnya, model perlu dioptimalkan agar lebih akurat dalam mendeteksi objek \textit{motorcycle} dan \textit{truck} dengan mengurangi \textit{False Negative} dan meningkatkan \textit{True Positive} pada kedua kelas tersebut.
+Melalui analisis ini, dapat disimpulkan bahwa model \textit{YOLOv8} menunjukkan akurasi yang sangat baik dalam mendeteksi kelas \textit{car} dengan tingkat \textit{True Positive} yang sangat tinggi, sedangkan ada sedikit kesulitan dalam mendeteksi objek \textit{background} dan \textit{truck}.
 
 Kemudian, dilakukan validasi deteksi objek dari hasil pelatihan model ini. Pada Gambar \ref{fig:validasi deteksi malam} dapat dilihat hasil model yang telah dilatih beserta \emph{confidence threshold} yang didapatkan untuk setiap citra yang digunakan sebagai validasi.
 
@@ -150,16 +152,14 @@ Kemudian, dilakukan validasi deteksi objek dari hasil pelatihan model ini. Pada 
 \vspace{-10pt}
 Dari hasil validasi deteksi tersebut objek kecil seperti motor mendapatkan nilai \emph{confidence threshold} paling kecil 0.5 dan paling tinggi 0.9. Untuk mobil rata-rata mendapatkan 0.8 hingga 0.9.
 
-\section{Perbandingan dengan Data Penelitian Terdahulu}
-Pada sub-bab ini akan dilakukan analisis terhadap pengujian yang didapatkan dari penelitian ini dan dilakukan perbandingan dengan penelitian terdahulu. Terdapat dua penelitian terdahulu yang digunakan, antara lain:
-\begin{enumerate}[nosep]
+\section{Pengujian dan Perbandingan Sistem terhadap Kecepatan Rata-rata dibawah 25Km/H pada Siang Hari}
+Dilakukan analisis terhadap pengujian yang didapatkan dari penelitian ini dan dilakukan perbandingan dengan penelitian terdahulu. Terdapat dua penelitian terdahulu yang digunakan, antara lain:
+\begin{enumerate}[nolistsep]
   \item Perhitungan Kecepatan Kendaraan Menggunakan Drone Bergerak dengan Metode Deep Learning (Fatchurozi, 2024) \\
   \item Vehicle Tracking and Speed Estimation from Unmanned Aerial Vehicles Using Segmentation Initialised Trackers (Tilon \& Nex, 2023) \\
 \end{enumerate}
-
-
-\subsection{Pengujian dan Perbandingan Sistem terhadap Kecepatan Rata-rata dibawah 25km/h pada Siang Hari}
-Pengujian ini dilakukan dengan kendaraan motor yang dikendarai dengan kecepatan rata-rata 20km/h dengan \emph{drone} diam. Tujuan dilakukan pengujian ini untuk mendapatkan informasi terkait kinerja terhadap sistem sejauh mana akurasi perhitungannya. Pengujian dilakukan pada siang hari dengan \emph{interval} waktu antara 11.00 WIB hingga 13.00 WIB. Pengujian dilakukan sebanyak 4 kali percobaan dengan kecepatan yang diproyeksikan sebesar 20km/h. Referensi untuk hasil sistem digunakan perhitungan manual di setiap ketinggian. Rata-rata kecepatan dari perhitungan manual ditunjukkan pada Tabel \ref{table:20km/h-siang-manual} dan Perhitungan Manual dari Penelitian \ref{subsec:Iqbal2024}. 
+\vspace{-5pt}
+Pengujian ini dilakukan dengan kendaraan motor yang dikendarai dengan kecepatan rata-rata 20km/h dengan \emph{drone} diam. Tujuan dilakukan pengujian ini untuk mendapatkan informasi terkait kinerja terhadap sistem sejauh mana akurasi perhitungannya. Pengujian dilakukan pada siang hari dengan \emph{interval} waktu antara 11.00 WIB hingga 13.00 WIB. Referensi untuk hasil sistem digunakan perhitungan manual di setiap ketinggian. 
 
 \begin{table}[H]
 	\caption{Perhitungan Manual dengan Kecepatan Rata-rata 20km/h pada Siang Hari}
@@ -202,9 +202,7 @@ Pengujian ini dilakukan dengan kendaraan motor yang dikendarai dengan kecepatan 
 
 Pada Tabel \ref{table:20km/h-siang-manual} yang menunjukkan hasil perhitungan manual dari penelitian ini dengan Tabel \ref{table:20km/h-siang-manual-iqbal} terdapat perbedaan di setiap ketinggiannya terutama pada ketinggian 20 meter yang memiliki selisih hingga 3km/h. Hal ini dapat disebabkan karena beberapa faktor \emph{error} yang dilakukan peneliti baik dalam mengukur jarak aktual dan waktu aktual saat objek yang menjadi objek percobaan melintas. Untuk Penelitian \ref{subsec:Tilon2023} yang ditunjukkan pada Tabel \ref{table:15kmh-manual-Tilon} memiliki kecepatan aktual yang tidak jauh dari target kecepatannya 15km/h.
 
-Hasil pengujian terhadap sistem estimasi kecepatan yang dilakukan ditunjukkan pada Tabel \ref{table:20km/h-siang-sistem} dan dari penelitian terdahulu, yaitu Penelitian Fatchurozi \ref{subsec:Iqbal2024} pada Tabel \ref{table:20km/h-siang-iqbal}, dan Penelitian Tilon \& Nex \ref{subsec:Tilon2023} pada Tabel \ref{table:15kmh-sistem-Tilon} dapat dilihat pada Tabel \ref{table:20km/h-siang-sistem}.
-
-Kemudian, dilakukan pengujian sistem dengan diberikan informasi tambahan, antara lain standar deviasi, dan \emph{error} antara hasil pengujian dengan perhitungan manual. Standar deviasi digunakan untuk mengetahui seberapa jauh hasil rata-rata dengan setiap data sehingga didapatkan informasi apakah tiap titik data bervariasi sangat jauh atau tidak untuk perbedaannya. Berikut persamaan yang akan digunakan untuk menghitung standar deviasi dan \emph{error} setiap data beserta akurasi yang didapatkan:
+Kemudian, dilakukan pengujian sistem dengan diberikan informasi tambahan, antara lain standar deviasi, dan \emph{error} antara hasil pengujian dengan perhitungan manual. Standar deviasi digunakan untuk mengetahui seberapa jauh hasil rata-rata dengan setiap data sehingga didapatkan informasi apakah tiap titik data bervariasi sangat jauh atau tidak untuk perbedaannya. Dapat dilihat pada Persamaan \ref{eq:standardeviasi} yang akan digunakan untuk menghitung standar deviasi:
 
 \begin{equation}
 \sigma = \sqrt{\frac{\sum_{i=1}^n (x_i - \mu)^2}{n}} \label{eq:standardeviasi}
@@ -221,7 +219,7 @@ x_i & = \text{Data ke-i} \\
 \end{aligned}
 \]
 
-Kemudian, untuk menghitung \emph{error} setiap data digunakan persamaan sebagai berikut:
+Kemudian, untuk menghitung \emph{error} setiap data digunakan persamaan \ref{eq:error}, \ref{eq:absolute_error}, \ref{eq:relative_error}:
 
 \begin{equation}
 \text{Error} = \text{Hasil Pengujian Sistem} - \text{Hasil Perhitungan Manual} \label{eq:error}
@@ -235,13 +233,41 @@ Kemudian, untuk menghitung \emph{error} setiap data digunakan persamaan sebagai 
 \text{Relative Error} = \left( \frac{\text{Absolute Error}}{\text{Hasil Perhitungan Manual}} \right) \times 100\% \label{eq:relative_error}
 \end{equation}
 
-Persamaan perhitungan akurasi adalah sebagai berikut:
+Persamaan perhitungan akurasi dapat dilihat pada Persamaan \ref{eq:accuracy}:
 
 \begin{equation}
 \text{Accuracy} = 100\% - \text{Relative Error} \label{eq:accuracy}
 \end{equation}
 
-Setelah dilakukan pengujian sistem dengan kecepatan rata-rata 20km/h dan data dari penelitian terdahulu, akan dihitung seberapa akurat sistem. Berikut data hasil pengujian yang telah dilakukan beserta hasil dari penelitian terdahulu dapat dilihat pada Tabel \ref{table:20km/h-siang-sistem}, Tabel \ref{table:20km/h-siang-iqbal}, dan Tabel \ref{table:15kmh-sistem-Tilon}.
+Pengujian di beberapa titik dengan kecepatan rata-rata 20km/h untuk ketinggian 20m, 30m, dan 40m, dapat dilihat pada Gambar \ref{fig:uji20m_20kmh} 
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/20m_siang_20km.jpg}
+    \caption{Ketinggian 20 Meter}
+    \label{fig:20m_siang_20kmh}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/30m_siang_20km.jpg}
+    \caption{Ketinggian 30 Meter}
+    \label{fig:30m_siang_20kmh}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/40m_siang_20km.jpg}
+    \caption{Ketinggian 40 Meter}
+    \label{fig:40m_siang_20kmh}
+  \end{subfigure}
+  \caption{Pengujian Sistem dengan Kecepatan Rata-rata 20km/h pada Siang Hari}
+  \label{fig:uji20m_20kmh}
+\end{figure}
+
+Berikut data hasil pengujian yang telah dilakukan beserta hasil dari penelitian terdahulu dapat dilihat pada Tabel \ref{table:20km/h-siang-sistem}, Tabel \ref{table:20km/h-siang-iqbal}, dan Tabel \ref{table:15kmh-sistem-Tilon}.
 
 \begin{table}[H]
 	\caption{Pengujian dengan Kecepatan Rata-rata 20km/h pada Siang Hari}
@@ -282,9 +308,9 @@ Setelah dilakukan pengujian sistem dengan kecepatan rata-rata 20km/h dan data da
 	\end{tabular}
 \end{table}
 
-Hasil pengujian menunjukkan rata-rata kecepatan kendaraan antara 21,09 hingga 23,19 km/h dengan variasi terbesar pada ketinggian 30 meter. Jika dibandingkan dengan perhitungan manual yang juga menggunakan target kecepatan 20 km/h, rata-rata kecepatan manual berada di kisaran 18,77 hingga 22,84 km/h, sehingga dapat diketahui terdapat selisih antara perhitungan manual dan sistem. Dibandingkan dengan penelitian 2.1.1 yang juga menargetkan kecepatan 20 km/h, hasilnya lebih rendah, yakni sekitar 17-18 km/h dan apabila melihat perhitungan manual yang memiliki rata-rata kecepatan sekitar 19 km/h, terdapat selisih antara perhitungan manual dan sistem dengan variasi yang lebih kecil. Sementara itu, penelitian 2.1.2 yang menargetkan kecepatan 15 km/h pada ketinggian 50 meter mencatat kecepatan aktual manual 14,68 km/h dan prediksi 17,97 km/h, yang sedikit lebih tinggi dari target.
+Hasil pengujian menunjukkan rata-rata kecepatan kendaraan antara 21,09 hingga 23,19 km/h dengan variasi terbesar pada ketinggian 30 meter. Jika dibandingkan dengan perhitungan manual yang juga menggunakan target kecepatan 20 km/h, rata-rata kecepatan manual berada di kisaran 18,77 hingga 22,84 km/h, sehingga dapat diketahui terdapat selisih antara perhitungan manual dan sistem. Dibandingkan dengan penelitian 2.1.1 yang juga menargetkan kecepatan 20 km/h, hasilnya lebih rendah, yakni sekitar 17-18 km/h dan apabila melihat perhitungan manual yang memiliki rata-rata kecepatan sekitar 19 km/h, terdapat selisih antara perhitungan manual dan sistem dengan variasi yang lebih kecil. Sementara itu, penelitian 2.1.2 yang menargetkan kecepatan 15 km/h pada ketinggian 50 meter mencatat kecepatan aktual 14,68 km/h dan prediksi 17,97 km/h, yang sedikit lebih tinggi dari target.
 
-Berikut data \emph{error} dan tingkat akurasi yang didapatkan berdasarkan hasil pengujian sistem dan penelitian terdahulu:
+Setelah didapatkan hasil pengujian maka akan dicari seberapa akurat sistem melalui perhitungan \emph{error}.
 
 \begin{table}[H]
 \centering
@@ -298,7 +324,7 @@ Berikut data \emph{error} dan tingkat akurasi yang didapatkan berdasarkan hasil 
 40 & 3.43 & 3.43 & 18.23 & 81.77 \\ \hline
 \end{tabular}
 \end{table}
-
+\vspace{-3ex}
 \begin{table}[H]
 \centering
 \caption{Perhitungan Error dan Akurasi Kecepatan Rata-rata 20Km/h saat Siang Hari pada Percobaan 2}
@@ -311,7 +337,7 @@ Berikut data \emph{error} dan tingkat akurasi yang didapatkan berdasarkan hasil 
 40 & 5.60 & 5.60 & 29.79 & 70.21 \\ \hline
 \end{tabular}
 \end{table}
-
+\vspace{-3ex}
 \begin{table}[H]
 \centering
 \caption{Perhitungan Error dan Akurasi Kecepatan Rata-rata 20Km/h saat Siang Hari pada Percobaan 3}
@@ -383,7 +409,7 @@ Berdasarkan hasil pengujian yang dilakukan beserta perbandingan dengan data pene
     \end{itemize}
 \end{itemize}
 Sehingga, hasil pengujian sistem pada penelitian ini dengan penelitian terdahulu tentu memiliki perbedaan yang disebabkan penggunaan atau kondisi lingkungan yang berbeda.
-\vspace{20pt}
+
 \section{Pengujian dan Perbandingan Sistem terhadap Kecepatan Rata-rata diatas 25Km/h pada Siang Hari}
 Pengujian ini dilakukan dengan kecepatan rata-rata 40km/h pada siang hari dengan \emph{drone} diam dan pada waktu antara 12.00 WIB hingga 14.00 WIB. Sebanyak 4 kali percobaan dilakukan untuk mendapatkan data pengujian. Perhitungan manual digunakan sebagai referensi dari perhitungan sistem. Perhitungan Manual untuk kecepatan rata-rata 40km/h pada siang hari dapat dilihat pada Tabel \ref{table:40km/h-siang-manual} hingga Tabel \ref{table:30kmh-manual-Tilon}.
 
@@ -429,6 +455,34 @@ Pengujian ini dilakukan dengan kecepatan rata-rata 40km/h pada siang hari dengan
 Pada Tabel \ref{table:40km/h-siang-manual} terlihat perhitungan manual pada target kecepatan 40 km/h menghasilkan nilai rata-rata yang relatif rapat, yaitu 39,48 km/h pada 20 m, 39,23 km/h pada 30 m, dan 39,82 km/h pada 40 m. Selisih kurang dari 1 km/h ini mengindikasikan bahwa prosedur pengukuran jarak dan waktu cukup stabil.. Sebaliknya, pada Tabel \ref{table:40km/h-siang-manual-iqbal} (Penelitian \ref{subsec:Iqbal2024}) variasi tiap ketinggian meluas terutama di 40 m, dengan deviasi hampir 2,25 km/h dari target menunjukkan peningkatan potensi \emph{error} sistematis, yang mungkin terjadi kesalahan saat pencatatan waktu kendaraan berpindah dari \emph{start} ke \emph{finish}.
 
 Sementara itu, pada Tabel \ref{table:30kmh-manual-Tilon} (Penelitian \ref{subsec:Tilon2023}) dengan target 30 km/h pada ketinggian 50 m diperoleh kecepatan aktual 28,55 km/h, alias selisih 1,45 km/h. Meskipun nilai absolut error lebih kecil dibandingkan variasi di Penelitian \ref{subsec:Iqbal2024}, perbedaan ini masih menunjukkan bahwa tanpa analisis statistik lebih lanjut dan kurangnya informasi pengambilan datanya, tidak mudah untuk mengetahui perbedaan tersebut.
+
+Pengujian di beberapa titik dengan kecepatan rata-rata 40km/h untuk ketinggian 20m, 30m, dan 40m, dapat dilihat pada Gambar \ref{fig:uji20m_40kmh} 
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/20m_siang_40km.jpg}
+    \caption{Ketinggian 20 Meter}
+    \label{fig:20m_siang_40kmh}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/30m_siang_40km.jpg}
+    \caption{Ketinggian 30 Meter}
+    \label{fig:30m_siang_40kmh}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/40m_siang_40km.jpg}
+    \caption{Ketinggian 40 Meter}
+    \label{fig:40m_siang_40kmh}
+  \end{subfigure}
+  \caption{Pengujian Sistem dengan Kecepatan Rata-rata 40km/h pada Siang Hari}
+  \label{fig:uji20m_40kmh}
+\end{figure}
 
 Kemudian, didapatkan data pengujian sistem dengan kecepatan rata-rata 40km/h, beserta data dari penelitian terdahulu sehingga dapat diketahui seberapa akurat sistem. Hasil data pengujian dan data penelitian terdahulu dapat dilihat pada Tabel \ref{table:40km/h-siang-sistem}, Tabel \ref{table:40km/h-siang-iqbal}, dan Tabel \ref{table:30kmh-sistem-Tilon}.
 
@@ -585,7 +639,7 @@ Berdasarkan hasil pengujian yang dilakukan serta perbandingan dengan data peneli
 	\end{itemize}
 \end{itemize}
 Meskipun yang dilakukan penelitian objek yang sama dan fokus yang sama tetapi terdapat perbedaan hasil dikarenakan kurang sempurnanya sistem dan perbedaan perhitungan yang dilakukan.
-
+\vspace{10ex}
 \section{Pengujian Sistem terhadap Kecepatan Rata-rata 20Km/H pada Malam Hari}
 
 Pada pengujian malam hari tepatnya sekitar pukul 00.30 WIB hingga 03.00 WIB, kendaraan motor dikendarai dengan kecepatan rata-rata 20 km/h. Tujuan pengujian ini adalah untuk menguji kinerja sistem pada kondisi pencahayaan yang lebih rendah dan intensitas lalu lintas yang berbeda dibandingkan dengan siang hari. Pengujian dilakukan pada malam hari untuk mengetahui sejauh mana sistem dapat mengestimasi kecepatan dalam kondisi pencahayaan yang terbatas, yang seringkali mengarah pada tantangan lebih besar dalam pengolahan citra dan deteksi objek.
@@ -604,7 +658,37 @@ Pada pengujian malam hari tepatnya sekitar pukul 00.30 WIB hingga 03.00 WIB, ken
 	\end{tabular}
 \end{table}
 \vspace{-10pt}
-Pada Tabel \ref{table:20km/h-malam-manual} dapat dilihat perhitungan manual dengan target kecepatan 20km/h yang menghasilkan nilai rata-rata untuk setiap ketinggiannya. Pada ketinggian 30m, terdapat perbedaan yang signifikan dengan ketinggian yang lain, dimana terukur hingga 22,42 km/h untuk rata-ratanya. Hal ini kemungkinan disebabkan karena kesalahan penguji dalam mengukur waktu dan jarak secara benar, karena semua percobaan tersebut tidak semuanya dilakukan pada hari yang sama.
+Pada Tabel \ref{table:20km/h-malam-manual} dapat dilihat perhitungan manual dengan target kecepatan 20km/h yang menghasilkan nilai rata-rata untuk setiap ketinggiannya. Pada ketinggian 30m, terdapat perbedaan yang signifikan dengan ketinggian yang lain, dimana terukur hingga 22,42 km/h untuk rata-ratanya. Hal ini kemungkinan disebabkan karena kesalahan penguji dalam mengukur waktu dan jarak secara benar.
+
+Kemudian, didapatkan hasil pengujian sistem terhadap kecepatan rata-rata 20km/h pada malam hari. Pengujian sistem dilakukan di 3 variasi ketinggian, yang dapat dilihat pada Gambar \ref{fig:ujimalam_20kmh}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/20m_malam_20km.jpg}
+    \caption{Ketinggian 20 Meter}
+    \label{fig:20m_malam_20kmh}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/30m_malam_20km.jpg}
+    \caption{Ketinggian 30 Meter}
+    \label{fig:30m_malam_20kmh}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/40m_malam_20km.jpg}
+    \caption{Ketinggian 40 Meter}
+    \label{fig:40m_malam_20kmh}
+  \end{subfigure}
+  \caption{Pengujian Sistem dengan Kecepatan Rata-rata 20km/h pada Malam Hari}
+  \label{fig:ujimalam_20kmh}
+\end{figure}
+
+Data pengujian didapatkan untuk setiap ketinggian dengan 3 kali percobaan, dengan ditambah adanya nilai standar deviasi untuk mengetahui variasi data.
 
 \begin{table}[H]
 	\caption{Pengujian dengan Kecepatan Rata-rata 20km/h pada Malam Hari}
@@ -688,7 +772,32 @@ Selain pengujian siang hari dengan kecepatan tinggi, pengujian juga dilakukan pa
 \end{table}
 \vspace{-10pt}
 
-Pada Tabel \ref{table:40km/h-malam-manual} dapat diketahui hasil perhitungan manual yang digunakan sebagai referensi dalam menentukan akurasi sistem. Pada Tabel \ref{table:40km/h-malam-sistem} akan ditampilkan hasil pengujian yang telah dilakukan.
+Pada Tabel \ref{table:40km/h-malam-manual} dapat diketahui hasil perhitungan manual yang digunakan sebagai referensi dalam menentukan akurasi sistem. Kemudian, titik pengujian yang dilakukan dapat dilihat pada Gambar \ref{fig:ujimalam_40kmh}.
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/20m_malam_20km.jpg}
+    \caption{Ketinggian 20 Meter}
+    \label{fig:20m_malam_40kmh}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/30m_malam_20km.jpg}
+    \caption{Ketinggian 30 Meter}
+    \label{fig:30m_malam_40kmh}
+  \end{subfigure}%
+  \hfill
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bab4/40m_malam_20km.jpg}
+    \caption{Ketinggian 40 Meter}
+    \label{fig:40m_malam_40kmh}
+  \end{subfigure}
+  \caption{Pengujian Sistem dengan Kecepatan Rata-rata 40km/h pada Malam Hari}
+  \label{fig:ujimalam_40kmh}
+\end{figure}
 
 \begin{table}[H]
 	\caption{Pengujian dengan Kecepatan Rata-rata 40km/h pada Malam Hari}

@@ -90,14 +90,14 @@ OC-SORT (\emph{Observation-Centric SORT}) merupakan pengembangan dari \emph{SORT
 ByteTrack adalah algoritma pelacakan \emph{Multi-Object Tracking} (MOT) yang meningkatkan akurasi dengan memanfaatkan hampir keseluruhan deteksi objek, dari deteksi dengan skor rendah dan deteksi dengan skor tinggi. Dengan metode ByteTrack, dapat mengatasi permasalahan deteksi objek yang tersembunyi dalam frame, serta fragmentasi jalur pelacakan yang sering terjadi pada objek yang tidak terdeteksi dalam frame berturut-turut. Keunggulan ByteTrack dalam pelacakan adalah melakukan asosiasi terhadap objek deteksi yang hilang dengan objek yang telah dilacak pada frame sebelumnya, dan juga ketika objek terhalang atau memiliki kualitas rendah. Sehingga, hal tersebut memungkinkan pemulihan objek yang hilang, serta meningkatkan kontinuitas pelacakan \cite{Zhang2022ByteTrack}.
 
 \begin{figure} [H] \centering
-  \includegraphics[scale=1]{bab2/mota_bytetrack.png}
+  \includegraphics[scale=1.2]{bab2/mota_bytetrack.png}
   \caption{Perbandingan MOTA-IDFI-FPS terhadap \emph{tracker}}
   \label{fig:mota-tracker}
 \end{figure}
 
 Dalam grafik pada Gambar \ref{fig:mota-tracker} menunjukkan bahwa ByteTrack sebagai algoritma \emph{Multiple Object Tracking Accuracy} tertinggi dibandingkan dengan yang lain. ByteTrack sangat efisien dalam hal pelacakan sehingga FPS yang dihasilkan juga lebih tinggi meskipun tidak secepat FairMOT. Algoritma ByteTrack menggabungkan dua proses asosiasi dalam \emph{tracking} yang dilakukan. Pertama, deteksi pada skor tinggi (\emph{high-confidence}) yang memastikan pelacakan akurat pada objek yang tidak terhalang dan mencocokkan objek yang terdeteksi sebelumnya. Kedua, deteksi dengan skor rendah (\emph{low-confidence}), yang memungkinkan memulihkan objek yang sempat tidak terlacak dan terfragmentasi dalam frame sebelumnya. Penggunaan Kalman Filter dan algoritma Hungarian pada ByteTrack untuk mencocokkan deteksi baru dengan jalur \emph{tracking} yang telah ada sehingga memungkinkan \emph{tracking} yang lebih andal meskipun dalam kondisi berbeda-beda \cite{Zhang2022ByteTrack}.
 
-\section{Ground Sampling Distance}
+\subsection{Ground Sampling Distance}
 Ground Sampling Distance (GSD) adalah ukuran resolusi spasial citra udara yang menghubungkan satu piksel pada gambar dengan ukuran sebenarnya di permukaan tanah. Semakin kecil nilai GSD, semakin detail citra yang dihasilkan, karena setiap piksel mewakili area yang lebih kecil. Parameter ini krusial dalam fotogrametri dan aplikasi survei udara, karena akan menentukan sejauh mana objek di permukaan dapat dikenali dan diukur dengan akurat.
 
 Secara matematis, GSD dapat dirumuskan sebagai berikut:
@@ -127,6 +127,6 @@ Sebagai contoh, untuk penerbangan pada ketinggian $H = 20\,$m dengan lebar senso
 \]
 Angka ini menunjukkan bahwa satu piksel pada citra setara dengan area seluas kurang lebih $4{,}68\,$cm di permukaan.
 
-Dalam praktiknya, perubahan ketinggian terbang akan memengaruhi GSD secara linier: peningkatan $H$ akan menaikkan nilai GSD, sehingga detail citra cenderung berkurang. Selain itu, pemilihan ukuran sensor dan resolusi gambar juga perlu disesuaikan dengan tujuan pemetaan. Misalnya, pada drone DJI Phantom 4 Pro, variasi ketinggian terbang antara 20-40 m dapat menghasilkan GSD antara 4-8 cm/piksel, sehingga operator dapat memilih kombinasi parameter yang optimal untuk keseimbangan antara cakupan area dan ketajaman detail objek.
+Dalam praktiknya, perubahan ketinggian terbang akan memengaruhi GSD secara linier: peningkatan $H$ akan menaikkan nilai GSD, sehingga detail citra cenderung berkurang. Selain itu, pemilihan ukuran sensor dan resolusi gambar juga perlu disesuaikan dengan tujuan pemetaan. Misalnya, pada drone DJI Phantom 4 Pro, variasi ketinggian terbang antara 20-40 m dapat menghasilkan GSD antara 4-8 cm/piksel, sehingga operator dapat memilih kombinasi parameter yang optimal untuk keseimbangan antara cakupan area dan ketajaman detail objek \cite{Tilon2023}.
 
 
