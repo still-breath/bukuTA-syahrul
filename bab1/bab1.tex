@@ -17,13 +17,13 @@ Dari keunggulan yang dimiliki oleh pesawat tanpa awak ini, tentu akan sangat mem
 
 Pemrosesan citra video yang sudah lama diaplikasikan dan dikembangkan merupakan teknologi utama yang akan digunakan dalam membuat otomasi estimasi kecepatan kendaraan \cite{Tekalp1995}. Dengan teknologi pengidentifikasian objek, pembacaan pola, serta alat perhitungan dalam membaca data yang didapat. Didukung juga dengan program dalam menghitung kecepatan kendaraan terhadap video \emph{streaming} yang dihasilkan oleh \emph{drone}, dan penggunaan suatu perangkat untuk menjalankan program komputasi tersebut dimana saja hanya dengan perlu menghubungkan antar perangkat melalui sebuah protokol.
 
-Teknologi pemrosesan citra ini menjadi salah satu teknologi yang semakin banyak digunakan karena kebutuhan akan otomasi untuk melakukan pengawasan yang terfokus pada beberapa objek saja. Maka, dalam menghitung estimasi kecepatan kendaraan yang melintas, diperlukan deteksi objek sehingga pemrosesan citra ini akan diaplikasikan dalam pengembangan sistem estimasi kecepatan dengan \emph{drone} pada penelitian ini.
+Teknologi pemrosesan citra ini menjadi salah satu teknologi yang semakin banyak digunakan karena kebutuhan akan otomasi untuk sebuah proses sehingga didapatkan efisiensi terhadap sistem. Sebagai contoh, diperlukan pengawasan yang efisien dan dapat menjangkau tempat yang lebih luas tanpa perlu pemasangan alat pengawasan terlebih dahulu. Maka, dalam pengawasan lalu lintas yang dapat menghitung kecepatan kendaraan yang melintas diperlukan deteksi objek sehingga pemrosesan citra ini dapat diaplikasikan dalam pengembangan sistem estimasi kecepatan dengan \emph{drone} pada penelitian ini.
 
 \section{Rumusan Masalah}
 Berdasarkan latar belakang tersebut, jumlah kendaraan terus meningkat sehingga dibutuhkan pengawasan lalu lintas yang tidak perlu membangun alat pengawasan di banyak tempat. Belum meratanya sistem pengawasan lalu lintas yang dapat membaca kecepatan kendaraan melintas menjadi permasalahan sehingga fleksibilitas dibutuhkan untuk melakukan pengawasan tersebut.
 
 \section{Batasan Masalah}
-Pengembangan penelitian ini terdapat beberapa keterbatasan dalam sistem ini, di antaranya adalah delay pada stream video yang menghambat pemrosesan waktu nyata (\emph{real-time}) dan rendahnya tingkat FPS (\emph{frames per second}) yang menyebabkan estimasi kecepatan tidak dapat dilakukan secara \emph{real-time} dengan akurat. Selain itu, perangkat Jetson Nano juga mengalami kesulitan dalam menjalankan pemrosesan secara terus-menerus dalam jangka waktu yang lama, mengingat beban kerja tinggi pada pengolahan video dan estimasi kecepatan kendaraan. Sehingga, sistem ini menghadapi tantangan dalam hal kecepatan pemrosesan, ketepatan waktu nyata, dan ketergantungan pada koneksi serta keterbatasan sumber daya perangkat keras.
+Penelitian ini berfokus pada estimasi kecepatan kendaraan yang ada di jalan raya dengan dilakukan pendeteksian kendaraan yang melintas. Sistem dapat mendeteksi kendaraan pada kondisi siang hari dan malam hari. Pendeteksian objek kendaraan menggunakan pemrosesan citra sehingga dapat dihitung kecepatannya. Implementasi sistem ini menggunakan \emph{edge device}, yaitu Jetson Nano. Penggunaan sistem tidak dapat dilakukan terlalu lama karena keterbatasan perangkat dan baterai yang dimiliki \emph{drone}.
 
 \section{Tujuan}
 Tujuan dilakukan penelitian ini adalah untuk peningkatan efektivitas dalam pemantauan lalu lintas dengan pemanfaatan \emph{drone} yang menghasilkan estimasi kecepatan kendaraan yang melintas. Maka, diharapkan dapat membantu satuan otoritas setempat dalam mengawasi lalu lintas dengan mudah dan fleksibel. Dengan penggunaan teknologi pengolahan citra video yang didukung Jetson Nano sehingga dapat melakukan perhitungan dengan alat yang \emph{portable} yaitu dapat dimana saja dalam menjalankan komputasinya.
@@ -33,7 +33,7 @@ Berdasarkan hal-hal yang telah dijelaskan diatas, penelitian tugas akhir ini mem
 \begin{enumerate}
     \item Hasil perhitungan kecepatan kendaraan yang melintas secara langsung.
     \item Meningkatkan efektivitas pengawasan dan pemantauan lalu lintas yang berbasis perangkat \emph{edge} sehingga dapat digunakan \emph{portable}, dan dapat diterapkan di berbagai lokasi.
-    \item Memberikan kontribusi terhadap pengembangan sistem pemantauan lalu lintas berbasis drone, yang dapat menjadi alternatif pemantauan dengan biaya lebih rendah dan kemampuan mobilitas tinggi.
+    \item Memberikan kontribusi terhadap pengembangan sistem pemantauan lalu lintas berbasis \emph{drone}, yang dapat menjadi alternatif pemantauan dengan biaya lebih rendah dan kemampuan mobilitas tinggi.
 \end{enumerate}
 
 \section{Sistematika Penulisan}
