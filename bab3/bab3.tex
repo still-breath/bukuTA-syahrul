@@ -14,7 +14,8 @@ Sistem estimasi ini akan bekerja dengan menggunakan \emph{deep learning} berbasi
   \label{fig:diagramsistem}
 \end{figure}
 
-Dilakukan akuisisi data untuk mengumpulkan dan melatih data yang diperoleh untuk proses deteksi objek. Untuk lebih akurat lagi, digunakan \emph{tracking} objek supaya dapat fleksibel mengikuti gerakan kendaraan. Pengukuran estimasi kecepatan dilakukan dengan menghitung perpindahan piksel antar \emph{frame} terhadap waktu.
+Alur kerja sistem disusun dengan 4 tahap secara runtut, data mentah dari hasil kamera \emph{drone} akan dilakukan akuisisi data dengan beberapa proses dimana jumlah data sebanyak yang dibutuhkan dengan beberapa variasi. Objek yang melintas akan terdeteksi sesuai dengan hasil pelatihan data mentah tersebut dari akuisisi data sehingga algoritma \emph{tracking} akan melacak pergerakan objek terdeteksi setiap melintas. Dari hasil \emph{tracking} akan dihitung kecepatan objek (kendaraan) berdasarkan perpindahan piksel antara \emph{frame} yang difaktorkan dengan jarak nyata terhadap waktu.
+
 
 \section{Akuisisi Data}
 Tahap pertama yang diperlukan adalah mengumpulkan data melalui rekaman citra video dari kamera yang terpasang pada \emph{drone} hingga tahap melatih data yang diperoleh. Akuisisi data ini merupakan hal krusial karena sangat memengaruhi dari keberhasilan tahap selanjutnya seperti deteksi objek, dan \emph{tracking} objek. Berikut diagram blok dari alur akuisisi data yang dapat dilihat pada Gambar \ref{fig:akuisisidata} yang diproses sedemikian rupa sehingga data dapat digunakan untuk tahap selanjutnya.
@@ -41,7 +42,7 @@ Data yang diambil merupakan hasil citra dari rekaman video yang diambil mengguna
   \label{fig:datacitra_malam}
 \end{figure}
 
-Citra tersebut diperoleh dari tiap frame yang diambil pada rekaman video \emph{drone} dari atas dengan kondisi siang hari dan malam hari. Pengambilan frame ini dilakukan secara komputasi dengan menjalankan sebuah program yang dirancang untuk mengambil setiap \emph{frame} citra dari video tersebut.
+Citra tersebut diperoleh dari tiap frame yang diambil pada rekaman video \emph{drone} dari atas dengan kondisi siang hari dan malam hari, kemudian dengan variasi ketinggian \emph{drone} 20m, 30m, dan 40m di beberapa tempat dalam kampus dan jalan raya sekitar graha ITS. Pengambilan frame ini dilakukan secara komputasi dengan menjalankan sebuah program yang dirancang untuk mengambil setiap \emph{frame} citra dari video tersebut.
 
 \subsection{Anotasi Data}
 Setelah pengambilan data, hasil citra akan diberikan anotasi. Anotasi ini diberikan hanya pada objek yang akan dideteksi saja. Anotasi dilakukan dengan menggunakan \emph{tool} yang disediakan oleh Roboflow. Hasil anotasi dapat dilihat pada Gambar \ref{fig:anotasidatasiang} dan Gambar \ref{fig:anotasidatamalam}.
@@ -58,35 +59,41 @@ Setelah pengambilan data, hasil citra akan diberikan anotasi. Anotasi ini diberi
   \label{fig:anotasidatamalam}
 \end{figure}
 
-Objek diberi anotasi antara lain, mobil, motor, dan truk. Setelah anotasi selesai pada semua citra data, maka data dapat diubah menjadi sebuah dataset yang siap dilatih sehingga membentuk model deteksi objek.
+Objek diberi anotasi sesuai dengan \emph{class} yang dibuthkan antara lain, mobil, motor, dan truk. Setelah anotasi selesai pada semua citra data, maka data dapat diubah menjadi sebuah dataset yang siap dilatih sehingga membentuk \emph{file} dataset berdasarkan jenis model yang diinginkan yaitu YOLOv8.
 
 \subsection{\emph{Pre-Processing}}
 Proses ini merupakan persiapan dan transformasi data yang diperlukan untuk memudahkan saat \emph{training} serta proses analisisnya. \emph{Pre-processing} yang dilakukan pada data ini antara lain, \emph{auto-orient} dan \emph{resize} menjadi 320x320. Dua langkah tersebut diperlukan untuk mendapatkan performa \emph{training} yang lebih baik dan akurat.
 
 \subsection{\emph{Augmentation}}
-Pembuatan contoh pelatihan data baru untuk model yang dijalankan dari beberapa versi augmentasi setiap citra yang menjadi dataset. \emph{Augmentation} dapat membuat dan menambah variasi baru sehingga menambah citra data yang mana akan meningkatkan keakuratan dari model deteksi objek hasil \emph{training}. Beberapa augmentasi yang dilakukan adalah variasi \emph{flip}, rotasi 90 derajat, \emph{hue}, dan kecerahan.
+Pembuatan contoh pelatihan data baru untuk model yang dijalankan dari beberapa versi augmentasi setiap citra yang menjadi dataset. \emph{Augmentation} dapat membuat dan menambah variasi baru sehingga menambah citra data dimana akan meningkatkan keakuratan dari model deteksi objek hasil \emph{training} untuk segala kondisi yang mungkin terjadi kedepannya. Beberapa augmentasi yang dilakukan adalah variasi \emph{flip}, rotasi 90 derajat, \emph{hue}, dan kecerahan.
 
 \subsection{\emph{Training}}
-Setelah dataset menjalani \emph{pre-processing} dan \emph{augmentation}, maka akan dilakukan pelatihan model deteksi objek dengan YOLOv8 yang merupakan \emph{framework} yang dikembangkan oleh Ultralytics. Proses \emph{training} ini akan belajar memahami pola dan mengenali objek yang dideteksi pada citra data. Model akan mengalami \emph{epoch} yang dapat diatur jumlah siklus sesuai kebutuhan. \emph{Epoch} merupakan siklus yang diproses untuk melatih model dengan setiap contoh maupun sampel dataset yang telah diproses sebelumnya. Model akan belajar mengenali objek dengan mengurangi \emph{loss} yang dihasilkan, dimana \emph{loss} merupakan jumlah banyaknya perbedaan yang dihasilkan dari prediksi model dengan anotasi yang sudah diatur. 
+Setelah dataset menjalani \emph{pre-processing} dan \emph{augmentation}, maka akan dilakukan pelatihan model deteksi objek dengan YOLOv8 yang merupakan \emph{framework} yang dikembangkan oleh Ultralytics. Proses \emph{training} ini akan belajar memahami pola dan mengenali objek yang dideteksi pada citra data. Model akan mengalami \emph{epoch} yang dapat diatur jumlah siklus sesuai kebutuhan. \emph{Epoch} merupakan siklus yang diproses untuk melatih model dengan setiap contoh maupun sampel dataset yang telah diproses sebelumnya. Model akan belajar mengenali objek dengan mengurangi \emph{loss} yang dihasilkan, dimana \emph{loss} merupakan jumlah banyaknya perbedaan yang dihasilkan dari prediksi model dengan anotasi yang sudah diatur. Pada Tabel \ref{specpc} merupakan spesifikasi komputer yang saya gunakan untuk pelatihan model YOLOv8
 
-Pelatihan dilakukan dengan jumlah epoch sebanyak 250, dan diatur menjadi \emph{half=True} (fp16). \emph{Batch size} diatur 16, dan \emph{workers} menjadi 8. Setelah didapatkan model (.pt) dari hasil pelatihan, diubah menjadi format onnx kemudian dikonversikan ke TensorRT. Proses \emph{training} ini menggunakan perangkat keras dengan spesifikasi yang dapat dilihat pada Tabel \ref{tbl:specpc}.
+\begin{table}[h!]
+  \centering
+  \captionof{table}{Tabel Spesifikasi Perangkat \emph{Training}}
+  \label{tbl:specpc}
+  \begin{tabular}{|c|c|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{\emph{Hardware}} & \textbf{Spesifikasi} \\ \hline
+    CPU               & Intel Core i9 13900K \\ \hline
+    GPU               & Nvidia Geforce RTX 4090 \\ \hline
+    RAM               & 64 GB \\ \hline
+  \end{tabular}
+\end{table}
 
-  \begin{table}[h!]
-    \centering
-    \captionof{table}{Tabel Spesifikasi Perangkat \emph{Training}}
-    \label{tbl:specpc}
-    \begin{tabular}{|c|c|}
-      \hline
-      \rowcolor[gray]{0.9}
-      \textbf{\emph{Hardware}} & \textbf{Spesifikasi} \\ \hline
-      CPU               & Intel Core i9 13900K \\ \hline
-      GPU               & Nvidia Geforce RTX 4090 \\ \hline
-      RAM               & 64 GB \\ \hline
-    \end{tabular}
-  \end{table}
- 
+Pelatihan dilakukan dengan jumlah epoch sebanyak 250, dan diatur menjadi \emph{half=True} (fp16). \emph{Batch size} diatur 16, dan \emph{workers} menjadi 8. Setelah didapatkan model (.pt) dari hasil pelatihan, model tersebut diubah menjadi format ONNX (\emph{Open Neural Network Exchange}) yang memungkinkan interoperabilitas antar \emph{platform} dan mempermudah optimasi lebih lanjut. Model ONNX kemudian disederhanakan menggunakan \emph{onnx-simplifier} untuk mengurangi kompleksitas graf komputasi, sehingga proses inferensi menjadi lebih cepat dan efisien.
+
+Selanjutnya, model ONNX yang telah disederhanakan dikonversi ke format TensorRT menggunakan NVIDIA TensorRT SDK yang dijalankan pada perangkat Jetson Nano. Konversi ini bertujuan mengoptimalkan performa inferensi dengan memanfaatkan akselerasi \emph{hardware} GPU NVIDIA, termasuk teknik kuantisasi, \emph{layer fusion}, dan optimasi kernel khusus. Melalui proses optimasi ini, model YOLOv8 mampu dijalankan pada Jetson Nano dengan latensi inferensi yang rendah dan konsumsi daya yang efisien, sehingga sangat cocok untuk aplikasi deteksi objek secara \emph{real-time} di perangkat \emph{edge} yaitu Jetson Nano.
+
+Dengan demikian, \emph{workflow} pelatihan dan optimasi model yang terintegrasi ini memungkinkan pengembangan sistem deteksi kendaraan yang responsif dan hemat sumber daya, mendukung implementasi dalam berbagai skenario pengawasan dan pemantauan bergerak.
+
+
+\newpage
 \section{Deteksi Objek}
-Deteksi objek dilakukan dengan menggunakan kamera \emph{drone} DJI Phantom 4 Pro yang mana sudah diatur resolusinya menjadi 720p dan 30 fps. Hasil tangkapan dari \emph{drone} akan dikirim melalui \emph{streaming} RTMP yang akan diterima oleh Jetson Nano untuk dilakukan pendeteksian objek dengan model YOLOv8 yang sudah dikonversi ke TensorRT.
+Deteksi objek dilakukan dengan menggunakan kamera \emph{drone} DJI Phantom 4 Pro yang mana sudah diatur resolusinya menjadi 720p dan 30 fps. Hasil tangkapan dari \emph{drone} akan dikirim melalui \emph{streaming} RTMP yang akan diterima oleh Jetson Nano untuk dilakukan pendeteksian objek dengan model YOLOv8 yang sudah dioptimasi ke TensorRT.
 
 Deteksi objek dilakukan pada sebuah video yang dikirim melalui \emph{stream} RTMP. Dari \emph{streaming} tersebut, akan diterima hasil tangkapan dari kamera drone yang kemudian diubah ke 360p untuk melakukan efisiensi pemrosesan oleh Jetson Nano. Lalu, beberapa objek yang menjadi fokus deteksi, antara lain mobil, motor, dan truk akan terdeteksi sesuai dengan objek yang melintas dan tertangkap kamera drone. Pendeteksian ini dijalankan dengan menggunakan model YOLOv8 yang telah dikonversi menjadi TensorRT untuk mendukung kapabilitas pendeteksian di Jetson Nano. Objek yang terdeteksi akan diberi label dan \emph{bounding box} sesuai dengan kelasnya. \emph{Bounding box} dan label ini akan menunjukkan objek apa yang ada didalam video tersebut. Pada Gambar \ref{fig:deteksi objek} dapat dilihat hasil deteksi objek yang dilakukan dengan model YOLOv8 dengan format TensorRT.
 
